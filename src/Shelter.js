@@ -4,7 +4,8 @@ class Shelter extends Component {
   render () {
     return (
       <div className='shelter'>
-        <div className='shelterName'>{this.props.name}</div>
+        <div className='shelterName'>{this.props.shelter.name}</div>
+        <div className='shelterPrice'>{this.props.shelter.price}</div>
       </div>
     )
   }

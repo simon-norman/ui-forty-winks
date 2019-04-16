@@ -17,7 +17,7 @@ class ShelterList extends Component {
 		return (
 			<div>
 				{ this.state.shelters.map((shelter, i) => {
-						return <Shelter key={i} name={shelter.name}/>
+						return <Shelter key={i} shelter={shelter}/>
 					})
 				}
 			</div>

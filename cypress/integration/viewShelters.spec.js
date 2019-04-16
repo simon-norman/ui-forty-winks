@@ -2,9 +2,9 @@ describe('find Shelters', () => {
   beforeEach(() => {
     cy.server()
     cy.route('GET', '**/shelters', [
-      { name: 'Mile End shelter'},
-      { name: 'Aldgate shelter' },
-      { name: 'Some shelter' }
+      { name: 'Mile End shelter', price: 20},
+      { name: 'Aldgate shelter', price: 30 },
+      { name: 'Some shelter', price: 25 }
     ])
   })
 
@@ -19,10 +19,18 @@ describe('find Shelters', () => {
 	})
 	
 	it('displays the name of each shelter', () => {
-    cy.visit('/')
+    cy.visit('/shelters')
 		cy.get('.shelter')
 			.first()
 			.get('.shelterName')
 			.contains('Mile End shelter')
+	})
+
+	it('fetches price along with each shelter name', () => {
+		cy.visit('/shelters')
+		cy.get('.shelter')
+			.first()
+			.get('.shelterPrice')
+			.contains('20')
 	})
 })
