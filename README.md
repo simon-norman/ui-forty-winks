@@ -27,3 +27,8 @@ Merging / committing to staging will trigger a build to the Heroku test environm
 Merging / committing to master will trigger a build to the Heroku production environment. 
 
 All merges and commits trigger a Codeship CI, which will also run the Cypress tests. Heroku will not deploy to production until these tests pass. 
+
+
+## User stories / tickets / backlog
+
+https://trello.com/b/pG7HmCwX/team-cookie-dough
