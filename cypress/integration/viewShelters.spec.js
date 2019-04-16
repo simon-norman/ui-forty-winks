@@ -16,5 +16,13 @@ describe('find Shelters', () => {
   it('redirects to shelters route from index', () => {
     cy.visit('/')
     cy.get('.shelter').should('have.length', 3)
-  })
+	})
+	
+	it('displays the name of each shelter', () => {
+    cy.visit('/')
+		cy.get('.shelter')
+			.first()
+			.get('.shelterName')
+			.contains('Mile End shelter')
+	})
 })

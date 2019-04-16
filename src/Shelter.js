@@ -4,7 +4,7 @@ class Shelter extends Component {
   render () {
     return (
       <div className='shelter'>
-
+        <div className='shelterName'>{this.props.name}</div>
       </div>
     )
   }
