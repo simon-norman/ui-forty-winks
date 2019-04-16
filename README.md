@@ -24,12 +24,13 @@ This will open up browser and run tests using Cypress.
 
 All Heroku deployments can be found in the Cookie Dough team site here: https://dashboard.heroku.com/teams/cookie-dough/apps. 
 
+We have two key branches, staging and master. We create branches for each feature from staging, and then merge to staging from each feature branch after each passing unit test. Once we have enough functionality for a release (e.g. a new feature as been added), we will push it to master via a pull request. 
+
+All merges and commits trigger a Codeship CI, which will also run the Cypress tests. Heroku will not deploy to production until the push to master passes CI.  
+
 Merging / committing to staging will trigger a build to the Heroku test environment. 
 
 Merging / committing to master will trigger a build to the Heroku production environment. 
-
-All merges and commits trigger a Codeship CI, which will also run the Cypress tests. Heroku will not deploy to production until these tests pass. 
-
 
 ## User stories / tickets / backlog
 
