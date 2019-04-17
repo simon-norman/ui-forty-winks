@@ -22,14 +22,17 @@ class ShelterList extends Component {
   render() {
 		return (
 			<div>
-				<Button onClick={this.redirectToTarget} variant="contained" color="primary" className="purchase-button">
-					Buy a voucher
-				</Button>
+				<div>
+					<Button onClick={this.redirectToTarget} variant="contained" color="primary" className="purchase-button">
+							Buy a voucher
+					</Button>
+				</div>
+				<div>
 					{ this.state.shelters.map((shelter, i) => {
 							return <Shelter key={i} shelter={shelter}/>
 						})
 					}
-
+				</div>
 			</div>
 		)
 	}
