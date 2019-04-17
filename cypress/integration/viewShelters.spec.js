@@ -17,7 +17,7 @@ describe('find Shelters', () => {
     cy.visit('/')
     cy.get('.shelter').should('have.length', 3)
 	})
-	
+
 	it('displays the name of each shelter', () => {
     cy.visit('/shelters')
 		cy.get('.shelter')
@@ -33,6 +33,7 @@ describe('find Shelters', () => {
 			.get('.shelterPrice')
 			.contains('20')
 	})
+
 	it('fetches description of each shelter', () => {
 		cy.visit('/shelters')
 		cy.get('.shelter')
@@ -40,4 +41,11 @@ describe('find Shelters', () => {
 			.get('.shelterDescription')
 			.contains('here is a description')
 	})
+
+  it('renders purchase button', () => {
+    cy.visit('/shelters')
+    cy.get('.purchase-button')
+      .click()
+    cy.location('pathname').should('eq', '/buy-voucher')
+  })
 })
