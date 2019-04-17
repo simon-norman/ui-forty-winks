@@ -46,6 +46,6 @@ describe('find Shelters', () => {
     cy.visit('/shelters')
     cy.get('.purchase-button')
       .click()
-    cy.location('pathname').should('eq', '/buy-voucher')
+    cy.location('pathname').should('eq', '/vouchers')
   })
 })

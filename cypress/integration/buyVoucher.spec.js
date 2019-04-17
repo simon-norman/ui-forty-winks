@@ -4,8 +4,13 @@ describe('purchase voucher', () => {
   })
 
   it('shows simple form to buy a voucher', () => {
-    cy.visit('/buy-voucher')
-    // cy.get('.purchaseForm')
-      .contains('buy a voucher')
+    cy.visit('/vouchers')
+      .contains('Buy')
+  })
+
+  it('shows simple form to buy a voucher', () => {
+    //cy.visit('/vouchers')
+    //cy.get('.buy-voucher')
+    //  .click()
   })
 })

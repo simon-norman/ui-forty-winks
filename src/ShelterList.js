@@ -16,7 +16,7 @@ class ShelterList extends Component {
   }
 
 	redirectToTarget = () => {
-	 this.props.history.push('/buy-voucher')
+	 this.props.history.push('/vouchers')
  }
 
   render() {

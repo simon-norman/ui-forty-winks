@@ -14,7 +14,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={ShelterList}/>
             <Route path='/shelters' component={ShelterList}/>
-            <Route exact path='/buy-voucher' component={PurchaseForm}/>
+            <Route exact path='/vouchers' component={PurchaseForm}/>
           </Switch>
         </BrowserRouter>
       </div>
