@@ -1,11 +1,11 @@
 describe('find Shelters', () => {
   beforeEach(() => {
     cy.server()
-    cy.route('GET', '**/shelters', [
+    cy.route('GET', '**/shelters', { "shelters": [
       { name: 'Mile End shelter', price: 20, description: 'here is a description' },
       { name: 'Aldgate shelter', price: 30, description: 'here is a description also' },
       { name: 'Some shelter', price: 25, description: 'here is a description again' }
-    ])
+    ]})
   })
 
 	it('shows a list of shelters', () => {

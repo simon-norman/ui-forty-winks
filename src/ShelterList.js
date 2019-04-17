@@ -9,8 +9,8 @@ class ShelterList extends Component {
   }
   
   componentDidMount = async () => {
-    const shelters = await shelterApi.getShelters();
-    this.setState({ shelters })
+    const response = await shelterApi.getShelters();
+    this.setState({ shelters: response.shelters })
   }
 
   render() {
