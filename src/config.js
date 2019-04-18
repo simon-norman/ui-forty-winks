@@ -7,13 +7,13 @@ const config = {
 
   test: { 
     fortyWinksApi: {
-      url: "http://localhost:4000" 
+      url: "http://localhost:8080" 
     },
   },
   
   production: { 
     fortyWinksApi: {
-      url: "http://localhost:4000" 
+      url: process.env.REACT_APP_FORTY_WINKS_API_URL
     },
   }
 }
