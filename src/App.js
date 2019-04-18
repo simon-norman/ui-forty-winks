@@ -4,6 +4,7 @@ import ShelterList from './ShelterList';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import PurchaseForm from './PurchaseForm.js';
+import Confirmation from './Confirmation.js'
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Route exact path='/' component={ShelterList}/>
             <Route path='/shelters' component={ShelterList}/>
             <Route exact path='/vouchers' component={PurchaseForm}/>
+            <Route exact path='/thank-you' component={Confirmation}/>
           </Switch>
         </BrowserRouter>
       </div>
