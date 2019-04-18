@@ -15,7 +15,7 @@ class PurchaseForm extends Component {
   buyVoucher = () => {
     this.state.stripe.redirectToCheckout({
       items: [{sku: 'sku_EtzFqxkV4F82q3', quantity: 1}],
-      successUrl: 'http://localhost:3000/shelters',
+      successUrl: 'http://localhost:3000/thank-you',
       cancelUrl: 'https://TOBEADDED.COM',
     })
     .then(function (result) {
