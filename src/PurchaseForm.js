@@ -13,9 +13,10 @@ class PurchaseForm extends Component {
   }
 
   buyVoucher = () => {
+    localStorage.removeItem('voucher')
     this.state.stripe.redirectToCheckout({
       items: [{sku: 'sku_EtzFqxkV4F82q3', quantity: 1}],
-      successUrl: 'http://localhost:3000/thank-you',
+      successUrl: 'http://localhost:3000/voucher',
       cancelUrl: 'https://TOBEADDED.COM',
     })
     .then(function (result) {
