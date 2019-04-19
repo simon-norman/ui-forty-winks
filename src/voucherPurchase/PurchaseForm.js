@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
+import VoucherOption from './VoucherOption';
 import loadExternalScript from '../helpers/loadExternalScript';
 
 class PurchaseForm extends Component {
   constructor(props) {
     super(props)
+    this.state = { voucherOptions: [
+      { price: 5, sku: 'sku_Eul0QEAUYQniqw' },
+      { price: 10, sku: 'sku_Eul0tfvCOYfGpF' },
+      { price: 20, sku: 'sku_EtzFqxkV4F82q3' },
+      { price: 30, sku: 'sku_Eul0TdI1c3aak2' }
+    ]}
     loadExternalScript('https://js.stripe.com/v3', this.createStripe)
   }
 
@@ -12,9 +18,9 @@ class PurchaseForm extends Component {
     this.setState({ stripe: window.Stripe('pk_test_wOHb0w02Yjdjkij8NCAVAAU400Zmwk3pSa') })
   }
 
-  buyVoucher = () => {
+  buyVoucher = (sku) => {
     this.state.stripe.redirectToCheckout({
-      items: [{sku: 'sku_EtzFqxkV4F82q3', quantity: 1}],
+      items: [{sku: sku, quantity: 1}],
       successUrl: 'http://localhost:3000/thank-you',
       cancelUrl: 'https://TOBEADDED.COM',
     })
@@ -28,10 +34,12 @@ class PurchaseForm extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.buyVoucher} className="buy-voucher" variant="contained" color="primary">
-            Buy a voucher
-        </Button>
-      </div>
+        { 
+          this.state.voucherOptions.map((voucherOption, i) => {
+            return <VoucherOption key={i} voucherOption={voucherOption} buyVoucher={this.buyVoucher}/>
+          })
+        }
+    </div>
     )
   }
 }
