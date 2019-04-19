@@ -19,10 +19,10 @@ class PurchaseForm extends Component {
     this.setState({ stripe: window.Stripe('pk_test_wOHb0w02Yjdjkij8NCAVAAU400Zmwk3pSa') })
   }
 
-  buyVoucher = (sku) => {
+  buyVoucher = (voucherOption) => {
     this.state.stripe.redirectToCheckout({
-      items: [{sku: sku, quantity: 1}],
-      successUrl: 'http://localhost:3000/thank-you',
+      items: [{sku: voucherOption["sku"], quantity: 1}],
+      successUrl: 'http://localhost:3000/voucher?amount=' + voucherOption["price"],
       cancelUrl: 'https://TOBEADDED.COM',
     })
     .then(function (result) {

@@ -21,9 +21,9 @@ const voucherApi = {
     }
   },
 
-  postVoucher: async () => {
+  postVoucher: async (amount) => {
     try {
-       const response = await baseApi.post('/voucher', {amount: 20});
+       const response = await baseApi.post('/voucher', {amount: amount});
   
       return response.data;
 
