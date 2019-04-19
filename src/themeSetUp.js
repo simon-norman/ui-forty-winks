@@ -7,6 +7,10 @@ const theme = createMuiTheme({
       main: '#007EA7',
       contrastText: '#ffffff',
     },
+    secondary: {
+      main: '#00A7E1',
+      contrastText: '#ffffff',
+    }
   },
   overrides: {
     MuiButton: { 

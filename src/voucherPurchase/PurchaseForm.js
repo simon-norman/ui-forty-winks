@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import VoucherOption from './VoucherOption';
 import loadExternalScript from '../helpers/loadExternalScript';
+import './PurchaseForm.css';
 
 class PurchaseForm extends Component {
   constructor(props) {
@@ -33,13 +34,18 @@ class PurchaseForm extends Component {
 
   render() {
     return (
-      <div>
-        { 
-          this.state.voucherOptions.map((voucherOption, i) => {
-            return <VoucherOption key={i} voucherOption={voucherOption} buyVoucher={this.buyVoucher}/>
-          })
-        }
-    </div>
+      <div className='main-page-container'>
+        <div className='voucher-list-container'>
+          <span className='voucher-list-title'>Choose a voucher:</span>
+          <div className='voucher-list'>
+          { 
+            this.state.voucherOptions.map((voucherOption, i) => {
+              return <VoucherOption key={i} voucherOption={voucherOption} buyVoucher={this.buyVoucher}/>
+            })
+          }
+          </div>
+      </div>
+      </div>
     )
   }
 }
