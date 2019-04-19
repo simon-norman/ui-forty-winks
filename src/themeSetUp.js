@@ -8,13 +8,15 @@ const theme = createMuiTheme({
       contrastText: '#ffffff',
     },
   },
-  typography: {
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      'Calibri',
-      'sans-serif',
-    ].join(','),
-  },
+  overrides: {
+    MuiButton: { 
+      text: { 
+        fontSize: '15px',
+        textTransform: 'none',
+        fontWeight: 'normal'
+      },
+    },
+  }
 });
 
 export default theme;

@@ -1,5 +1,12 @@
 .nav-bar {
-  padding: 14px;
   text-align: left;
   font-size: 20px;
+}
+
+.nav-bar .nav-bar__item {
+  margin-left: 20px;
+}
+
+.load-vouchers-page-button {
+  font-size: 16px;
 }
