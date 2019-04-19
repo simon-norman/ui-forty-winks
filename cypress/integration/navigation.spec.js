@@ -9,4 +9,11 @@ describe('find Shelters', () => {
       .click()
     cy.location('pathname').should('eq', '/vouchers')
   })
+
+  it('goes to shelters page when selecting shelters from navbar', () => {
+    cy.visit('/vouchers')
+    cy.get('.load-shelters-page-button')
+      .click()
+    cy.location('pathname').should('eq', '/shelters')
+  })
 })

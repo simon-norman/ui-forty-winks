@@ -15,6 +15,9 @@ class NavBar extends Component {
       <AppBar className='nav-bar' position='static' color="primary">
         <Toolbar>
           <span>Forty Winks</span>
+          <Button onClick={this.redirectTo('/shelters')} color="inherit" className="nav-bar__item load-shelters-page-button">
+            Shelters
+          </Button>
           <Button onClick={this.redirectTo('/vouchers')} color="inherit" className="nav-bar__item load-vouchers-page-button">
             Buy Voucher
           </Button>
