@@ -9,8 +9,11 @@ class Confirmation extends Component {
   }
 
   componentDidMount = async () => {
+    if (localStorage.getItem('voucher') == null){
     const response = await voucherApi.getVoucher();
-    this.setState({ voucher: response.voucher})
+    this.setState({ voucher: response})
+    localStorage.setItem('voucher', this.state.voucher.code)
+    }
   }
 
   render() {
