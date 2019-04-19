@@ -1,0 +1,21 @@
+.voucher-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-page-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.voucher-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.voucher-list-title {
+  margin-bottom: 30px;
+  font-size: 24px;
+}

@@ -41,11 +41,4 @@ describe('find Shelters', () => {
 			.get('.shelterDescription')
 			.contains('here is a description')
 	})
-
-  it('renders purchase button', () => {
-    cy.visit('/shelters')
-    cy.get('.purchase-button')
-      .click()
-    cy.location('pathname').should('eq', '/vouchers')
-  })
 })

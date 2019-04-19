@@ -8,9 +8,8 @@ describe('purchase voucher', () => {
       .contains('Buy')
   })
 
-  it('shows simple form to buy a voucher', () => {
-    //cy.visit('/vouchers')
-    //cy.get('.buy-voucher')
-    //  .click()
+  it('shows list of vouchers', () => {
+    cy.visit('/vouchers')
+    cy.get('.voucher-option').should('have.length', 4)
   })
 })
