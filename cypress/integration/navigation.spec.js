@@ -1,4 +1,4 @@
-describe('find Shelters', () => {
+describe('navigation', () => {
   beforeEach(() => {
     cy.server()
   })
