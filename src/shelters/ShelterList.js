@@ -4,6 +4,7 @@ import shelterApi from '.././services/shelterApi';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Iframe from 'react-iframe';
+import './ShelterList.css';
 
 class ShelterList extends Component {
 	constructor(props) {
@@ -22,17 +23,16 @@ class ShelterList extends Component {
 
   render() {
 		return (
-			<div>
-				<div>
-					<Button onClick={this.redirectToTarget} variant="contained" color="primary" className="purchase-button">
-							Buy a voucher
-					</Button>
-				</div>
-				<div>
+			<div className="shelter-list-container">
 					{ this.state.shelters.map((shelter, i) => {
 							return <Shelter key={i} shelter={shelter}/>
 						})
 					}
+
+				<div>
+					<Button onClick={this.redirectToTarget} variant="contained" color="primary" className="purchase-button">
+							Buy voucher
+					</Button>
 				</div>
 			</div>
 		)
