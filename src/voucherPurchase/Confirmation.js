@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import voucherApi from './services/voucherApi'
+import voucherApi from '../services/voucherApi'
 import Voucher from './Voucher'
 
 class Confirmation extends Component {

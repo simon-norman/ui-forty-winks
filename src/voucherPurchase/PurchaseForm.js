@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import loadExternalScript from './helpers/loadExternalScript';
+import loadExternalScript from '../helpers/loadExternalScript';
 
 class PurchaseForm extends Component {
   constructor(props) {
