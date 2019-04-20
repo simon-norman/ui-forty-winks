@@ -4,7 +4,7 @@ import './VoucherOption.css';
 
 class VoucherOption extends Component {
   buyVoucher = () => {
-    this.props.buyVoucher(this.props.voucherOption.sku)
+    this.props.buyVoucher(this.props.voucherOption)
   }
 
   render() {

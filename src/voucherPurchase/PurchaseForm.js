@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VoucherOption from './VoucherOption';
 import loadExternalScript from '../helpers/loadExternalScript';
 import './PurchaseForm.css';
+import config from '../config';
 
 class PurchaseForm extends Component {
   constructor(props) {
@@ -19,10 +20,10 @@ class PurchaseForm extends Component {
     this.setState({ stripe: window.Stripe('pk_test_wOHb0w02Yjdjkij8NCAVAAU400Zmwk3pSa') })
   }
 
-  buyVoucher = (sku) => {
+  buyVoucher = (voucherOption) => {
     this.state.stripe.redirectToCheckout({
-      items: [{sku: sku, quantity: 1}],
-      successUrl: 'http://localhost:3000/thank-you',
+      items: [{sku: voucherOption["sku"], quantity: 1}],
+      successUrl: config.fortyWinksUi.url + '/voucher?amount=' + voucherOption["price"],
       cancelUrl: 'https://TOBEADDED.COM',
     })
     .then(function (result) {

@@ -4,8 +4,8 @@ class Voucher extends Component {
   render () {
     return (
       <div className='voucher'>
-        <div className='vouchercode'>{this.props.voucher.vouchercode}</div>
-        <div className='voucheramount'>{this.props.voucher.voucheramount}</div>
+        <div className='vouchercode'>Voucher:  FW{this.props.voucher.code}</div>
+        <div className='voucheramount'>Amount:  £{this.props.voucher.amount}</div>
       </div>
     )
   }

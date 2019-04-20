@@ -1,7 +1,8 @@
 describe('voucher confirmation', () => {
   beforeEach(() => {
     cy.server()
-    cy.route('POST', '**/vouchercode', {voucher: {vouchercode: "123456", voucheramount: 20}})
+    cy.route('GET', '**/voucher*', {code: "123456", amount: 20})
+    cy.route('POST', '**/voucher', {code: "123456", amount: 20})
   })
 
   it('renders thank you text', () => {
@@ -11,7 +12,13 @@ describe('voucher confirmation', () => {
 
   it('renders a voucher code', () => {
     cy.visit('/thank-you')
-    cy.get('.voucher').contains("123456")
-    cy.get('.voucher').contains("20")
+    cy.get('.voucher').contains("FW123456")
+    cy.get('.voucher').contains("£20")
+  })
+
+  it('creates and returns a voucher', () => {
+    cy.visit('/voucher')
+    cy.get('.voucher').contains("FW123456")
+    cy.get('.voucher').contains("£20")
   })
 })

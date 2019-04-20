@@ -7,15 +7,24 @@ const baseApi = axios.create({
 });
 
 const voucherApi = {
-  getVoucher: async () => {
+  getVoucher: async (code) => {
     try {
-      // commented out until API live
-      // const response = await baseApi.post('/vouchercode', {amount: 20});
-      //
+       const response = await baseApi.get('/voucher', {params: {
+        code: code
+      }
+    });
 
-      // stubbing API
-      const response = {data: {voucher: {vouchercode: "123456", voucheramount: 20}}}
+      return response.data;
+      
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
+  postVoucher: async (amount) => {
+    try {
+       const response = await baseApi.post('/voucher', {amount: amount});
+  
       return response.data;
 
     } catch (error) {
