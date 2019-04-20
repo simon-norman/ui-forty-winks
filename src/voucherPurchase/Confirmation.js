@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import voucherApi from '../services/voucherApi'
 import Voucher from './Voucher'
+import './Confirmation.css'
 
 class Confirmation extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Confirmation extends Component {
 
   render() {
     return(
-      <div>
+      <div className='voucher-container'>
         <div><h1>thank you!</h1></div>
         {this.state.voucher ?
           <Voucher voucher = {this.state.voucher} />

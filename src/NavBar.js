@@ -12,7 +12,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <AppBar className='nav-bar' position='static' color="primary">
+      <AppBar className='nav-bar' position='fixed' color="primary">
         <Toolbar>
           <span>Forty Winks</span>
           <Button onClick={this.redirectTo('/shelters')} color="inherit" className="nav-bar__item load-shelters-page-button">
