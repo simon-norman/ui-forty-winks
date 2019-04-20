@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Shelter from './Shelter';
 import shelterApi from '.././services/shelterApi';
 import Button from '@material-ui/core/Button';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Iframe from 'react-iframe';
 import './ShelterList.css';
 
 class ShelterList extends Component {
