@@ -10,7 +10,7 @@ class VoucherOption extends Component {
   render() {
     return (
       <div className='voucher-option'>
-        <Button onClick={this.buyVoucher} className="buy-voucher" variant="contained" color="secondary">
+        <Button onClick={this.buyVoucher} className="buy-voucher button" variant="contained" color="secondary">
             { `£${this.props.voucherOption.price}` }
         </Button>
       </div>
