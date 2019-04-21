@@ -16,11 +16,13 @@ class App extends Component {
           <BrowserRouter>
           <NavBar />
             <Switch>
-              <Route exact path='/' component={ShelterList}/>
-              <Route path='/shelters' component={ShelterList}/>
-              <Route exact path='/vouchers' component={PurchaseForm}/>
-              <Route path='/voucher' render={(props) => <Confirmation {...props} post={true} key='1' />}/>
-              <Route path='/thank-you' render={(props) => <Confirmation {...props} post={false} key='2' />}/>
+              <div className="main-page">
+                <Route exact path='/' component={ShelterList}/>
+                <Route path='/shelters' component={ShelterList}/>
+                <Route exact path='/vouchers' component={PurchaseForm}/>
+                <Route path='/voucher' render={(props) => <Confirmation {...props} post={true} key='1' />}/>
+                <Route path='/thank-you' render={(props) => <Confirmation {...props} post={false} key='2' />}/>
+              </div>
             </Switch>
           </BrowserRouter>
         </MuiThemeProvider>

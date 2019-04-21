@@ -6,7 +6,6 @@
 .main-page-container {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
 }
 
 .voucher-list-container {

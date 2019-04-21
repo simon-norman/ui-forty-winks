@@ -1,7 +1,8 @@
 .shelter-list-container {
   justify-content: center;
-  padding: 20px;
-  padding-top: 75px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
   width:70%;
   align-items: center;
   text-align: center;
