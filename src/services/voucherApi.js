@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../config';
+import auth from './auth';
 
 const baseApi = axios.create({
   baseURL: config.fortyWinksApi.url,
@@ -30,6 +31,17 @@ const voucherApi = {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  redeemVoucher: async(id) => {
+    try {
+      const headers = { 'Authorization': `Bearer ${auth.getAccessToken()}`, 'content-type': 'application/json' }
+      console.log(headers)
+      const response = await baseApi.post(`private/vouchers/${id}/redemption`, { headers });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+   }
   }
 }
 
