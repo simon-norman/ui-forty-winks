@@ -37,7 +37,7 @@ const voucherApi = {
     try {
       const headers = { 'Authorization': `Bearer ${auth.getAccessToken()}`, 'content-type': 'application/json' }
       console.log(headers)
-      const response = await baseApi.post(`private/vouchers/${id}/redemption`, { headers });
+      const response = await baseApi.post(`private/vouchers/${id}/redemption`, '', { headers: headers });
       return response.data;
     } catch (error) {
       console.log(error);
