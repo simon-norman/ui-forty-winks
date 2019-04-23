@@ -27,7 +27,9 @@ class ShelterList extends Component {
 
   render() {
 		return (
-			<div className="shelter-list-container">{this.createShelterComponents()}</div>
+			<div className="shelter-list-container">
+				<div>{this.createShelterComponents()}</div>
+			</div>
 		)
 	}
 }

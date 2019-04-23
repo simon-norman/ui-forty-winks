@@ -9,8 +9,8 @@ class Shelter extends Component {
         <Card className='shelter'>
           <Card.Body className='shelter-info'>
             <Card.Title className='shelter-name'>{this.props.shelter.name}</Card.Title>
+            <Card.Subtitle className='shelter-price'>£{this.props.shelter.price}</Card.Subtitle>
             <Card.Subtitle className="shelter-description">{this.props.shelter.description}</Card.Subtitle>
-            <Card.Text className='shelter-price'>£{this.props.shelter.price}</Card.Text>
             <Card.Text className='shelter-location'>{this.props.shelter.location}</Card.Text>
           </Card.Body>
           <Card.Body className='shelter-map'>
