@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# UI Forty Winks
 
-## Available Scripts
+This is the frontend for the forty winks app. Forty Winks enables users to book shelter accommodation for homeless people.
 
-In the project directory, you can run:
+The production version is here: https://ui-forty-winks.herokuapp.com/.
 
-### `npm start`
+The backend api repository can be found here: https://github.com/simon-norman/api-forty-winks
 
-Runs the app in the development mode.<br>
+## How to run
+
+### In development mode: `npm run start-dev`
+
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
+The page will reload if you make edits.
 You will also see any lint errors in the console.
 
-### `npm test`
+### To run tests, run `npm run start-dev` then (once app running) `npm run feature-test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This will open up browser and run tests using Cypress.
 
-### `npm run build`
+## How to deploy
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+All Heroku deployments can be found in the Cookie Dough team site here: https://dashboard.heroku.com/teams/cookie-dough/apps.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+We have two key branches, staging and master. We create branches for each feature from staging, and then merge to staging from each feature branch after each passing unit test. Once we have enough functionality for a release (e.g. a new feature as been added), we will push it to master via a pull request.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All merges and commits trigger a Codeship CI, which will also run the Cypress tests. Heroku will not deploy to production until the push to master passes CI.  
 
-### `npm run eject`
+Merging / committing to staging will trigger a build to the Heroku test environment.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Merging / committing to master will trigger a build to the Heroku production environment.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## User stories / tickets / backlog
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+https://trello.com/b/pG7HmCwX/team-cookie-dough
