@@ -1,8 +1,54 @@
-.shelterName {
+.shelter-name {
   font-weight: bold;
   font-size: 15pt;
 }
 
-.shelterDescription {
+.shelter-description {
   color: grey;
 }
+
+.shelter + .shelter {
+  margin: 20px 0px 20px 0px;
+ }
+ 
+ .shelter {
+   padding: 20px;
+   width:100%;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   flex: 2;
+   text-align: left;
+   justify-content: space-between;
+ }
+ 
+ .shelter-map {
+   display: flex;
+   flex-direction: column;
+   min-width: 23%;
+   max-width: 23%;
+   flex: 1 1 auto;
+ }
+ 
+ .shelter-info {
+   display: flex;
+   flex-direction: column;
+   flex: 1 1 auto;
+ }
+
+ .shelter-map iframe {
+   width: auto;
+   max-width: 100%;
+ }
+
+ @media only screen and (max-width: 900px) {
+  .shelter {
+    flex-direction: column;
+  }
+
+  .shelter-map {
+   max-width: 100%;
+   width: 100%;
+ }
+}
+ 
