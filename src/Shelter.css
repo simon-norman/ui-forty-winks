@@ -12,3 +12,11 @@
 .shelterDescription {
   color: grey;
 }
+
+.shelterInfo {
+  display: inline-block;
+}
+
+.shelterMap {
+  display: inline-block;
+}
