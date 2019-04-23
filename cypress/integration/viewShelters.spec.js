@@ -1,6 +1,5 @@
 describe('find Shelters', () => {
   beforeEach(() => {
-    cy.server()
     cy.route('GET', '**/shelters', {shelters:[
       { name: 'Mile End shelter', price: 20, description: 'here is a description', location: 'nearby' ,mapurl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.775190063914!2d-0.07546948426252068!3d51.51734027963678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761caf26599a83%3A0x9b451d586c649129!2sMakers!5e0!3m2!1sen!2suk!4v1555754401793!5m2!1sen!2suk" },
       { name: 'Aldgate shelter', price: 30, description: 'here is a description also', location: 'further away', mapurl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.775190063914!2d-0.07546948426252068!3d51.51734027963678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761caf26599a83%3A0x9b451d586c649129!2sMakers!5e0!3m2!1sen!2suk!4v1555754401793!5m2!1sen!2suk"  },

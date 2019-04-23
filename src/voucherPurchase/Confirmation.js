@@ -22,7 +22,7 @@ class Confirmation extends Component {
       this.setState({ voucher: response})
     }
   }
-  
+
 
   render() {
     return(
