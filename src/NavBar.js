@@ -22,7 +22,7 @@ class NavBar extends Component {
           <Button onClick={this.redirectTo('/vouchers')} color="inherit" className="nav-bar__item load-vouchers-page-button">
             Buy Voucher
           </Button>
-          <Button onClick={auth.login} color="inherit" className="nav-bar__item load-vouchers-page-button">
+          <Button onClick={auth.login} color="inherit" className="nav-bar__item load-login-page-button">
             Shelters login
           </Button>
         </Toolbar>
