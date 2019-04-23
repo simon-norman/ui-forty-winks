@@ -20,7 +20,7 @@ class ShelterList extends Component {
 	}
 
  	createShelterComponents = () => {
-		return this.state.shelters.map((index, shelter) => {
+		return this.state.shelters.map((shelter, index) => {
 			return <Shelter key={index} shelter={shelter}/>
 		})
  	}
