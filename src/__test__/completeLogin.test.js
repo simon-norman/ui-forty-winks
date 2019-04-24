@@ -8,11 +8,11 @@ describe('<LoginSuccess /> spec', () => {
   let stubbedParseHash;
   let stubbedRouteReplace;
 
-  const flushPromises = () => {
-    return new Promise(resolve => setImmediate(resolve));
+  const waitForPromisesToResolve = async () => {
+    await Promise.resolve();
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     const mockAuthResult = {
       accessToken: 'abcdef',
       expiresIn: 100000
@@ -29,11 +29,16 @@ describe('<LoginSuccess /> spec', () => {
     auth = createAuth(mockAuthInstance)
 
     stubbedRouteReplace = jest.fn()
+
+    const { getByText, findByText } = render(<LoginSuccess history={{ replace: stubbedRouteReplace }} auth={auth} />)
+    await waitForPromisesToResolve()
   })
 
-  it('renders the component', async () => {
-    const { getByText, findByText } = render(<LoginSuccess history={{ replace: stubbedRouteReplace }} auth={auth} />)
-    await Promise.resolve();
+  it('instructs auth0 to extract login details from URL (parse hash)', async () => {
     expect(stubbedParseHash.mock.calls.length).toBe(1)
+  })
+
+  it('sets route to "/redemption" once login details extracted', async () => {
+    expect(stubbedRouteReplace.mock.calls[0][0]).toBe('/redemption')
   })
 });
