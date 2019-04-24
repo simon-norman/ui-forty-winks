@@ -14,7 +14,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiButton: { 
       text: { 
-        fontSize: '15px',
+        fontSize: '1.7rem',
         textTransform: 'none',
         fontWeight: 'normal'
       },

@@ -36,9 +36,9 @@ class App extends Component {
                 <Route path='/shelters' component={ShelterList}/>
                 <Route exact path='/vouchers' component={PurchaseForm}/>
                 <Route path='/voucher' render={(props) => <Confirmation {...props} post={true} key='1' />}/>
-                <Route path='/thank-you' render={(props) => <Confirmation {...props} post={false} key='2' />}/>
                 <Route path='/redemption' render={this.requireAuth}/>
                 <Route path='/login/success' component={LoginSuccess} />
+                <Route path='/voucher/success' render={(props) => <Confirmation {...props} post={false} key='2' />}/>
               </div>
             </Switch>
           </BrowserRouter>

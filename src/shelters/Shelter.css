@@ -1,12 +1,12 @@
 .shelter-name {
   font-weight: bold;
-  font-size: 20pt;
+  font-size: 2.4rem;
   margin-bottom: 0;
 }
 
 .shelter-description, .shelter-price {
-  color: black;
-  font-size: 12pt;
+  color: 	#5C5C5C;
+  font-size: 1.6rem;
   margin-top: 10px;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .shelter-location {
-  font-size: 14pt;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-top: 18px;
 }
@@ -23,13 +23,10 @@
 .shelter {
   border: 1px solid #eeeeee;
   border-radius: 0;
-  padding: 30px;
+  padding: 35px;
   margin-bottom: 50px;
-  width:100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  flex: 2;
   text-align: left;
   justify-content: space-between;
  }
@@ -39,13 +36,11 @@
    flex-direction: column;
    min-width: 23%;
    max-width: 23%;
-   flex: 1 1 auto;
  }
  
  .shelter-info {
    display: flex;
    flex-direction: column;
-   flex: 1 1 auto;
  }
 
  .shelter-map iframe {
@@ -53,14 +48,31 @@
    max-width: 100%;
  }
 
- @media only screen and (max-width: 900px) {
+ @media only screen and (min-width: 600px) and (max-width: 1400px) {
+    .shelter-map {
+      min-width: 27%;
+      max-width: 27%;
+    }
+
+    .shelter {
+      margin-bottom: 40px;
+    }
+  }
+
+ @media only screen and (max-width: 600px) {
   .shelter {
     flex-direction: column;
+    margin-bottom: 25px;
+    padding: 20px;
   }
 
   .shelter-map {
-   max-width: 100%;
-   width: 100%;
- }
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .shelter-map iframe {
+    height: 110px;
+  } 
 }
  

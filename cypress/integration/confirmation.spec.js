@@ -6,14 +6,8 @@ describe('voucher confirmation', () => {
   })
 
   it('renders thank you text', () => {
-    cy.visit('/thank-you')
+    cy.visit('/voucher')
       .contains('thank you!')
-  })
-
-  it('renders a voucher code', () => {
-    cy.visit('/thank-you')
-    cy.get('.voucher').contains("FW123456")
-    cy.get('.voucher').contains("£20")
   })
 
   it('creates and returns a voucher', () => {
@@ -22,15 +16,8 @@ describe('voucher confirmation', () => {
     cy.get('.voucher').contains("£20")
   })
 
-  it('renders sms form', () => {
-    cy.visit('/thank-you')
-    cy.get('.sms-form')
-    cy.get('.sms-number')
-    cy.get('.sms-submit')
-  })
-
   it('renders sms sent confirmation message', () => {
-    cy.visit('/thank-you')
+    cy.visit('/voucher/success')
     cy.get('.sms-number').type("7777777777")
     cy.get('.sms-submit').click({ force: true })
     cy.get('.text-sent-confirmation').contains('Voucher sent to 07777777777!')

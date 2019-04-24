@@ -1,12 +1,19 @@
 .nav-bar {
   text-align: left;
-  font-size: 20px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.app-title {
+  text-align: center;
 }
 
 .nav-bar .nav-bar__item {
   margin-left: 20px;
 }
 
-.load-vouchers-page-button {
-  font-size: 16px;
+@media only screen and (max-width: 470px) {
+  .nav-bar .nav-bar__item {
+    margin-left: 6px;
+  }
 }
