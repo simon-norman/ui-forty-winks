@@ -7,27 +7,24 @@ class Redemption extends Component {
   constructor(props) {
 		super(props);
     this.state = {voucher: null}
-    if (/access_token|id_token|error/.test(props.location.hash)) {
-      auth.handleAuthentication();
-    }
   }
 
   redeemVoucher = async (event) => {
     event.preventDefault();
+    const voucherCodeString = this.state.voucherCode ? parseInt(this.state.voucherCode.substr(2),10) : null
     const voucherDetails = {
       "email": this.state.userEmail,
-      "code": this.state.code,
+      "code": voucherCodeString,
       "amount": this.state.deductAmount
     }
     const response = await voucherApi.redeemVoucher(voucherDetails)
     this.setState({voucher: response, deductAmount: ''})
-    console.log(response)
-    console.log(this.state.voucher)
   }
 
   getVoucherDetails = async (event) => {
     event.preventDefault();
-    const response = await voucherApi.getVoucher(this.state.code);
+    const voucherCodeString = this.state.voucherCode ? parseInt(this.state.voucherCode.substr(2),10) : null
+    const response = await voucherApi.getVoucher(voucherCodeString);
     this.setState({ voucher: response })
   }
 
@@ -38,7 +35,6 @@ class Redemption extends Component {
   }
 
   render() {
-    console.log(this.state.voucher)
     if (!this.state.voucher) {
       return (
         <div className='redeem-form-1'>
@@ -57,7 +53,7 @@ class Redemption extends Component {
     } else {
       return (
           <div className='redeem-form-2'>
-            <h2 className='confirmed-voucher-code'>{this.state.voucher.code}</h2>
+            <h2 className='confirmed-voucher-code'>FW{this.state.voucher.code}</h2>
             <div className='amount-left'>{this.state.voucher.amount}</div>
             <form onSubmit={this.redeemVoucher}>
               <label>
