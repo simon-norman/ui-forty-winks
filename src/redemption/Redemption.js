@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import voucherApi from '../services/voucherApi';
 import auth from '../services/auth';
+import TextField from '@material-ui/core/TextField';
+import './Redemption.css';
 
 class Redemption extends Component {
   constructor(props) {
@@ -38,41 +40,31 @@ class Redemption extends Component {
     if (!this.state.voucher) {
       return (
         <div className='redeem-form-1'>
-          <form onSubmit={this.getVoucherDetails}>
-            <label>
-            Voucher to redeem:
-            <input className='voucher-code'
+            <TextField className='voucher-code'
               type='text'
               name='voucherCode'
+              label='Voucher to redeem'
               onChange={this.handleInput}/>
-            </label>
-            <input className='get-voucher-details' type='submit' value='submit'/>
-          </form>
+            <Button onClick={this.getVoucherDetails} className='get-voucher-details' variant="contained" color="secondary">Submit</Button>
         </div>
       )
     } else {
       return (
           <div className='redeem-form-2'>
-            <h2 className='confirmed-voucher-code'>FW{this.state.voucher.code}</h2>
-            <div className='amount-left'>{this.state.voucher.amount}</div>
-            <form onSubmit={this.redeemVoucher}>
-              <label>
-              Amount to deduct:
-              <input className='deduct-amount'
+            <h2 className='confirmed-voucher-code'>Redeem credit from: FW{this.state.voucher.code}</h2>
+            <div className='amount-left'>Credit available: £{this.state.voucher.amount}</div>
+              <TextField className='deduct-amount'
                 type='text'
                 name='deductAmount'
+                label='Amount to deduct'
                 onChange={this.handleInput}
                 value={this.state.deductAmount}/>
-              </label>
-              <label>
-              email confirmation to:
-              <input className='user-email'
+              <TextField className='user-email'
                 type='text'
                 name='userEmail'
+                label='email confirmation to'
                 onChange={this.handleInput}/>
-              </label>
-              <input className='submit-deduction' type='submit' value='submit'/>
-            </form>
+              <Button onClick={this.redeemVoucher} className='submit-deduction' variant="contained" color="secondary">Submit</Button>
           </div>
       )
     }
