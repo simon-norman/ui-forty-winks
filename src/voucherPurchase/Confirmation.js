@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import voucherApi from '../services/voucherApi'
 import Voucher from './Voucher'
+import MessageForm from './MessageForm'
 import './Confirmation.css'
 
 class Confirmation extends Component {
@@ -26,15 +27,19 @@ class Confirmation extends Component {
 
   render() {
     return(
-      <div className='voucher-container'>
-        <div><h1>thank you!</h1></div>
-        {this.state.voucher ?
-          <Voucher voucher = {this.state.voucher} />
+        <div className='voucher-container'>
+          {this.state.voucher ?
+            <div><h1>thank you!</h1>
+              <div>
+                <Voucher voucher = {this.state.voucher} />
+              </div>
+              <div className='sms-form'>
+                <MessageForm voucher = {this.state.voucher} />
+              </div>
+            </div>
           : null }
-      </div>
-
+        </div>
     )
-
   }
 }
 
