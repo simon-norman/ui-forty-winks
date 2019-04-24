@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import './NavBar.css'
 import Toolbar from '@material-ui/core/Toolbar';
-import auth from './services/auth';
 
 class NavBar extends Component {
   redirectTo = (route) => {
@@ -22,7 +21,7 @@ class NavBar extends Component {
           <Button onClick={this.redirectTo('/vouchers')} color="inherit" className="nav-bar__item load-vouchers-page-button">
             Vouchers
           </Button>
-          <Button onClick={auth.login} color="inherit" className="nav-bar__item load-login-page-button">
+          <Button onClick={this.props.auth.login} color="inherit" className="nav-bar__item load-login-page-button">
             Shelters login
           </Button>
         </Toolbar>

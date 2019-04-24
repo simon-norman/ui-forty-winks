@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import voucherApi from '../services/voucherApi';
-import auth from '../services/auth';
 import TextField from '@material-ui/core/TextField';
 import './Redemption.css';
 
@@ -19,14 +17,14 @@ class Redemption extends Component {
       "code": voucherCodeString,
       "amount": this.state.deductAmount
     }
-    const response = await voucherApi.redeemVoucher(voucherDetails)
+    const response = await this.props.voucherApi.redeemVoucher(voucherDetails)
     this.setState({voucher: response, deductAmount: ''})
   }
 
   getVoucherDetails = async (event) => {
     event.preventDefault();
     const voucherCodeString = this.state.voucherCode ? parseInt(this.state.voucherCode.substr(2),10) : null
-    const response = await voucherApi.getVoucher(voucherCodeString);
+    const response = await this.props.voucherApi.getVoucher(voucherCodeString);
     this.setState({ voucher: response })
   }
 

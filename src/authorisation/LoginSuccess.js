@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
-import auth from '../services/auth';
+import { withRouter } from 'react-router-dom';
 
-class LoginSuccess extends Component {
+export class LoginSuccess extends Component {
   async componentDidMount() {
     try {
-      await auth.handleAuthentication();
+      await this.props.auth.handleAuthentication();
       this.props.history.replace('/redemption');
     } catch(error) {
       console.log(error)
@@ -13,9 +12,7 @@ class LoginSuccess extends Component {
   }
 
   render() {
-    return(
-      ''
-    )
+    return ''
   }
 }
 
