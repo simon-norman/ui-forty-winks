@@ -16,7 +16,7 @@ const voucherApi = {
     });
 
       return response.data;
-      
+
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +25,7 @@ const voucherApi = {
   postVoucher: async (amount) => {
     try {
        const response = await baseApi.post('/voucher', {amount: amount});
-  
+
       return response.data;
 
     } catch (error) {
@@ -33,11 +33,11 @@ const voucherApi = {
     }
   },
 
-  redeemVoucher: async(id) => {
+  redeemVoucher: async(voucherDetails) => {
     try {
       const headers = { 'Authorization': `Bearer ${auth.getAccessToken()}`, 'content-type': 'application/json' }
       console.log(headers)
-      const response = await baseApi.post(`private/vouchers/${id}/redemption`, '', { headers: headers });
+      const response = await baseApi.post(`private/voucher/redeem`, voucherDetails, { headers: headers });
       return response.data;
     } catch (error) {
       console.log(error);

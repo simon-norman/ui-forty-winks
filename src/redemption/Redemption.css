@@ -1,0 +1,9 @@
+.redeem-form-1, .redeem-form-2, h2, .amount-left {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+div.voucher-code, div.deduct-amount, div.user-email, div.amount-left {
+  margin-bottom: 20px;
+}

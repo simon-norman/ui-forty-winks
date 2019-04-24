@@ -21,13 +21,11 @@ class MessageForm extends Component {
       "code": this.state.code,
       "amount": this.state.amount
     }
-    console.log(message)
     messageApi.postMessage(message, this.updateMessageState)
   }
 
   updateMessageState = (message) => {
     this.setState({message: true})
-    console.log(this.state)
   }
 
   render() {
