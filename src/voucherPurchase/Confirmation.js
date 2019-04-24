@@ -15,7 +15,7 @@ class Confirmation extends Component {
     const qs = require('query-string')
     const amount = qs.parse(this.props.location.search).amount
     const response = await voucherApi.postVoucher(amount);
-    this.props.history.push("/thank-you?code=" + response.code)}
+    this.props.history.push("/voucher/success?code=" + response.code)}
     else {
       const qs = require('query-string')
       const code = qs.parse(this.props.location.search).code
