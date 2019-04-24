@@ -3,7 +3,7 @@ import { render, fireEvent } from 'react-testing-library'
 import { LoginSuccess } from '../authorisation/LoginSuccess'
 import createAuth from '../services/auth'
 
-describe('Complete login tests', () => {
+describe('<LoginSuccess /> spec', () => {
   let auth;
   let stubbedParseHash;
   let stubbedRouteReplace;
@@ -17,11 +17,15 @@ describe('Complete login tests', () => {
       accessToken: 'abcdef',
       expiresIn: 100000
     }
+
     stubbedParseHash = jest.fn((callback) => {
       callback(null, mockAuthResult)
     })
-    
-    const mockAuthInstance = { parseHash: stubbedParseHash }
+
+    const mockAuthInstance = {
+      parseHash: stubbedParseHash
+    }
+
     auth = createAuth(mockAuthInstance)
 
     stubbedRouteReplace = jest.fn()

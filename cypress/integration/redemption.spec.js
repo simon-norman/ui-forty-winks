@@ -54,4 +54,4 @@ describe('redeem voucher', () => {
 //     cy.get('.amount-left').contains('8')
 //   })
 //
-})
+//})

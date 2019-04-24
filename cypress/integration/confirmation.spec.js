@@ -7,7 +7,7 @@ describe('voucher confirmation', () => {
 
   it('renders thank you text', () => {
     cy.visit('/voucher')
-      .contains('thank you!')
+      .contains('Thank you!')
   })
 
   it('creates and returns a voucher', () => {

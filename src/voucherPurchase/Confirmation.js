@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import voucherApi from '../services/voucherApi'
 import Voucher from './Voucher'
 import MessageForm from './MessageForm'
 import './Confirmation.css'
@@ -22,7 +21,7 @@ class Confirmation extends Component {
     const qs = require('query-string')
     const amount = qs.parse(this.props.location.search).amount
 
-    const voucher = await voucherApi.postVoucher(amount);
+    const voucher = await this.props.voucherApi.postVoucher(amount);
 
     this.props.history.push("/voucher/success?code=" + voucher.code)
   }
@@ -30,7 +29,7 @@ class Confirmation extends Component {
   getVoucher = async () => {
     const qs = require('query-string')
     const code = qs.parse(this.props.location.search).code
-    const response = await voucherApi.getVoucher(code);
+    const response = await this.props.voucherApi.getVoucher(code);
     this.setState({ voucher: response})
   }
 
