@@ -3,7 +3,6 @@ describe('voucher confirmation', () => {
     cy.server()
     cy.route('GET', '**/voucher*', {code: "123456", amount: 20})
     cy.route('POST', '**/voucher', {code: "123456", amount: 20})
-    cy.route('GET', '**/message*', {number: "+447777777777", code: "FW5", amount: "26.00"})
     cy.route('POST', '**/message', {number: "+447777777777", code: "FW5", amount: "26.00"})
   })
 
