@@ -1,9 +1,10 @@
 import auth0 from 'auth0-js';
+import config from '../config';
 
 const auth0Instance = new auth0.WebAuth({
   domain: 'dev-itjmkjwl.eu.auth0.com',
   clientID: 'cQDWo28WaQ6jGjji65l9pLRy8k6q9vSb',
-  redirectUri: 'http://localhost:3000/login/success',
+  redirectUri: `${config.fortyWinksUi.url}/login/success`,
   audience:'https://api-forty-winks.herokuapp.com/',
   responseType: 'token',
 });
