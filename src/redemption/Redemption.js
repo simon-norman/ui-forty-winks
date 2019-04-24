@@ -42,6 +42,7 @@ class Redemption extends Component {
               type='text'
               name='voucherCode'
               label='Voucher to redeem'
+              data-testid="voucher-code-input"
               onChange={this.handleInput}/>
             <Button onClick={this.getVoucherDetails} className='get-voucher-details' variant="contained" color="secondary">Submit</Button>
         </div>

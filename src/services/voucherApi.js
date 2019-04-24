@@ -1,12 +1,7 @@
 import axios from 'axios';
 import config from '../config';
 
-const baseApi = axios.create({
-  baseURL: config.fortyWinksApi.url,
-  responseType: 'json',
-});
-
-const createVoucherApi= (auth) => {
+const createVoucherApi= (auth, baseApi) => {
   return {
     getVoucher: async (code) => {
       try {

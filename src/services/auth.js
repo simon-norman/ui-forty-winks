@@ -1,7 +1,6 @@
 
 const createAuth = (auth0Instance) => {
   const auth = {
-
     login() {
       auth0Instance.authorize();
     },

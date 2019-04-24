@@ -13,6 +13,7 @@ import createAuth from './services/auth';
 import auth0 from 'auth0-js';
 import config from './config';
 import createVoucherApi from './services/voucherApi';
+import axios from 'axios'
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +27,12 @@ class App extends Component {
     });
     const auth = createAuth(auth0Instance)
 
-    const voucherApi = createVoucherApi(auth)
+    const baseApi = axios.create({
+      baseURL: config.fortyWinksApi.url,
+      responseType: 'json',
+    });
+
+    const voucherApi = createVoucherApi(auth, baseApi)
 
     this.state = { auth, voucherApi }
   }

@@ -1,44 +1,42 @@
 import React from 'react'
 import { render, fireEvent } from 'react-testing-library'
-import { LoginSuccess } from '../authorisation/LoginSuccess'
+import Redemption from '../redemption/Redemption'
 import createAuth from '../services/auth'
+import createVoucherApi from '../services/voucherApi';
 
 describe('<LoginSuccess /> spec', () => {
-  let auth;
-  let stubbedParseHash;
-  let stubbedRouteReplace;
+  let mockAccessToken;
+  let mockBaseApi;
+  let stubbedGetCall;
+  let stubbedPostCall;
+  let wrapper;
 
   const waitForPromisesToResolve = async () => {
     await Promise.resolve();
   };
 
   beforeEach(async () => {
-    const mockAuthResult = {
-      accessToken: 'abcdef',
-      expiresIn: 100000
+    const auth = createAuth()
+    mockAccessToken = 'abc321'
+    auth.accessToken = mockAccessToken
+
+    stubbedGetCall = jest.fn()
+    stubbedPostCall = jest.fn()
+    mockBaseApi = {
+      get: stubbedGetCall,
+      post: stubbedPostCall
     }
 
-    stubbedParseHash = jest.fn((callback) => {
-      callback(null, mockAuthResult)
-    })
+    const voucherApi = createVoucherApi(auth, mockBaseApi)
 
-    const mockAuthInstance = {
-      parseHash: stubbedParseHash
-    }
-
-    auth = createAuth(mockAuthInstance)
-
-    stubbedRouteReplace = jest.fn()
-
-    const { getByText, findByText } = render(<LoginSuccess history={{ replace: stubbedRouteReplace }} auth={auth} />)
+    wrapper = render(<Redemption voucherApi={voucherApi} />)
     await waitForPromisesToResolve()
   })
 
-  it('instructs auth0 to extract login details from URL (parse hash)', async () => {
-    expect(stubbedParseHash.mock.calls.length).toBe(1)
-  })
-
-  it('sets route to "/redemption" once login details extracted', async () => {
-    expect(stubbedRouteReplace.mock.calls[0][0]).toBe('/redemption')
+  it('instructs forty winks to get a voucher when code entered', async () => {
+    const input = wrapper.getByTestId('voucher-code-input')
+    input.value = 'V12'
+    fireEvent.change(input)
+    expect(stubbedGetCall.mock.calls.length).toBe(1)
   })
 });
