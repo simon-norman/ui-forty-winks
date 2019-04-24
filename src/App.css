@@ -8,19 +8,31 @@ body {
 }
 
 .main-page {
-  margin-top: 150px;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-top: 140px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (min-width: 600px) and (max-width: 1400px) {
   html {
-    font-size: 8px;
+    font-size: 9px;
   }
 
   .main-page {
-    margin-top: 100px;
-    margin-left: 8%;
-    margin-right: 8%;
+    margin-top: 130px;
+    margin-left: 14%;
+    margin-right: 14%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 7.5px;
+  }
+
+  .main-page {
+    margin-top: 90px;
+    margin-left: 7%;
+    margin-right: 7%;
   }
 }
