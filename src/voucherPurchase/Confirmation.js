@@ -10,18 +10,28 @@ class Confirmation extends Component {
     this.state = {voucher: null}
   }
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     if (this.props.post === true){
+      this.createVoucher()
+    } else {
+      this.getVoucher()
+    }
+  }
+
+  createVoucher = async () => {
     const qs = require('query-string')
     const amount = qs.parse(this.props.location.search).amount
-    const response = await voucherApi.postVoucher(amount);
-    this.props.history.push("/voucher/success?code=" + response.code)}
-    else {
-      const qs = require('query-string')
-      const code = qs.parse(this.props.location.search).code
-      const response = await voucherApi.getVoucher(code);
-      this.setState({ voucher: response})
-    }
+
+    const voucher = await voucherApi.postVoucher(amount);
+
+    this.props.history.push("/voucher/success?code=" + voucher.code)
+  }
+
+  getVoucher = async () => {
+    const qs = require('query-string')
+    const code = qs.parse(this.props.location.search).code
+    const response = await voucherApi.getVoucher(code);
+    this.setState({ voucher: response})
   }
 
 
