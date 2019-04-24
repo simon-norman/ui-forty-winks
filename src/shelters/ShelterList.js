@@ -11,27 +11,24 @@ class ShelterList extends Component {
   }
 
   componentDidMount = async () => {
-    const response = await shelterApi.getShelters();
+		const response = await shelterApi.getShelters();
     this.setState({ shelters: response.shelters })
   }
 
 	redirectToTarget = () => {
-	 this.props.history.push('/vouchers')
- }
+		this.props.history.push('/vouchers')
+	}
+
+ 	createShelterComponents = () => {
+		return this.state.shelters.map((shelter, index) => {
+			return <Shelter key={index} shelter={shelter}/>
+		})
+ 	}
 
   render() {
 		return (
 			<div className="shelter-list-container">
-					{ this.state.shelters.map((shelter, i) => {
-							return <Shelter key={i} shelter={shelter}/>
-						})
-					}
-
-				<div>
-					<Button onClick={this.redirectToTarget} variant="contained" color="primary" className="purchase-button">
-							Buy voucher
-					</Button>
-				</div>
+				<div>{this.createShelterComponents()}</div>
 			</div>
 		)
 	}
