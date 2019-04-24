@@ -1,6 +1,6 @@
 .nav-bar {
   text-align: left;
-  font-size: 20px;
+  font-size: 2rem;
 }
 
 .nav-bar .nav-bar__item {
@@ -8,5 +8,5 @@
 }
 
 .load-vouchers-page-button {
-  font-size: 16px;
+  font-size: 2rem;
 }

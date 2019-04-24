@@ -1,12 +1,12 @@
 .shelter-name {
   font-weight: bold;
-  font-size: 20pt;
+  font-size: 2.2rem;
   margin-bottom: 0;
 }
 
 .shelter-description, .shelter-price {
   color: black;
-  font-size: 12pt;
+  font-size: 1.4rem;
   margin-top: 10px;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .shelter-location {
-  font-size: 14pt;
+  font-size: 1.6rem;
   font-weight: bold;
   margin-top: 18px;
 }
@@ -56,11 +56,17 @@
  @media only screen and (max-width: 900px) {
   .shelter {
     flex-direction: column;
+    margin-bottom: 35px;
   }
 
   .shelter-map {
    max-width: 100%;
    width: 100%;
  }
+
+
+  .shelter-map iframe {
+    height: 110px;
+  } 
 }
  
