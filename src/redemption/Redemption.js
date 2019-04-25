@@ -6,7 +6,7 @@ import './Redemption.css';
 class Redemption extends Component {
   constructor(props) {
 		super(props);
-    this.state = {voucher: null}
+    this.state = {voucherCode: null}
   }
 
   redeemVoucher = async (event) => {
@@ -28,10 +28,10 @@ class Redemption extends Component {
     this.setState({ voucher: response })
   }
 
-  handleInput = (event) => {
-    const name = event.target.name
-    const value = event.target.value
-    this.setState({[name]: value})
+  handleInput = (name) => {
+    return (event) => {
+      this.setState({[name]: event.target.value})
+    }
   }
 
   render() {
@@ -40,10 +40,8 @@ class Redemption extends Component {
         <div className='redeem-form-1'>
             <TextField className='voucher-code'
               type='text'
-              name='voucherCode'
               label='Voucher to redeem'
-              data-testid="voucher-code-input"
-              onChange={this.handleInput}/>
+              onChange={this.handleInput('voucherCode')}/>
             <Button onClick={this.getVoucherDetails} className='get-voucher-details' variant="contained" color="secondary">Submit</Button>
         </div>
       )
@@ -54,9 +52,8 @@ class Redemption extends Component {
             <div className='amount-left'>Credit available: £{this.state.voucher.amount}</div>
               <TextField className='deduct-amount'
                 type='text'
-                name='deductAmount'
                 label='Amount to deduct'
-                onChange={this.handleInput}
+                onChange={this.handleInput('deductAmount')}
                 value={this.state.deductAmount}/>
               <TextField className='user-email'
                 type='text'
