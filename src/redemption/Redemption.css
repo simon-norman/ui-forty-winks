@@ -28,19 +28,6 @@
   font-size: 1.7rem;
 }
 
-div.voucher-code, div.deduct-amount, div.user-email {
+div.voucher-code, div.user-email {
   margin-bottom: 20px;
-}
-
-div.deduct-amount {
-  margin-top: 15px;
-  margin-bottom: 0;
-}
-
-.deduct-amount-error {
-  margin-top: 6px;
-  margin-bottom: 10px;
-  text-align: left;
-  color: red;
-  font-size: 1.4rem;
 }

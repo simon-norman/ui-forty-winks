@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import './CustomInput.css'
 
 class CustomInput extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class CustomInput extends Component {
 
   handleInput = (event) => {
     this.setState({ value: event.target.value })
-    this.props.onChange({ event, isFieldValid: this.fieldValidStatus().isValid })
+    this.props.onChange({ event, isValid: this.fieldValidStatus().isValid })
   }
 
   fieldValidStatus = () => {
@@ -21,7 +22,7 @@ class CustomInput extends Component {
     }
 
     return { isValid: true }
-  }
+  } 
 
   validationError = () => {
     const { isValid, message } = this.fieldValidStatus()

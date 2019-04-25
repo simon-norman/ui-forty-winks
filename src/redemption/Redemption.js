@@ -7,44 +7,24 @@ import './Redemption.css';
 class Redemption extends Component {
   constructor(props) {
 		super(props);
-    this.state = { voucherCode: null, areFieldsValid: [] }
-  }
-
-  handleInput = (name) => {
-    return (event) => {
-      this.setState({[name]: event.target.value})
-    }
+    this.state = { voucherCode: null, redemptionForm: {} }
   }
 
   handleCustomInput = (name) => {
-    return ({ event, isFieldValid }) => {
-      this.setState({[name]: event.target.value})
-      this.updateFieldsValid({ name, isFieldValid })
+    return ({ event, isValid }) => {
+      const redemptionForm = this.state.redemptionForm
+      redemptionForm[name] = { value: event.target.value, isValid }
+      this.setState({ redemptionForm })
     }
-  }
-
-  updateFieldsValid = ({ name, isFieldValid }) => {
-    const areFieldsValid = this.state.areFieldsValid;
-    const indexOfField = areFieldsValid.findIndex((field) => {
-      return field.isValid
-    })
-
-    if(indexOfField !== -1) {
-      areFieldsValid[indexOfField] = { name, isValid: isFieldValid }
-    } else {
-      areFieldsValid.push({ name, isValid: isFieldValid })
-    }
-    this.setState({ areFieldsValid })
   }
 
   isFormValid = () => {
-    if(this.state.areFieldsValid.find((field) => {
-      return field.isValid === false
-    })) {
-      return false
-    } else {
-      return true
+    for(let redemptionField in this.state.redemptionForm) {
+      if(!redemptionField.isValid) {
+        return false
+      }
     }
+    return true
   }
 
   getVoucherDetails = async (event) => {
@@ -62,15 +42,17 @@ class Redemption extends Component {
       const voucherDetails = {
         "email": this.state.userEmail,
         "code": voucherCodeString,
-        "amount": this.state.deductAmount
+        "amount": this.state.redemptionForm.deductAmount
       }
       const response = await this.props.voucherApi.redeemVoucher(voucherDetails)
-      this.setState({ voucher: response, deductAmount: '', isRedeemFormActive: false })
+      const redemptionForm = this.state.redemptionForm
+      redemptionForm.deductAmount = ''
+      this.setState({ voucher: response, redemptionForm, isRedeemFormActive: false })
     }
   }
 
-  isAvailableCreditForRedeem = () => {
-    if(parseFloat(this.state.deductAmount) <= parseFloat(this.state.voucher.amount)) {
+  isAvailableCreditForRedeem = (deductAmount) => {
+    if(parseFloat(deductAmount) <= parseFloat(this.state.voucher.amount)) {
       return { isValid: true }
     }
     return { isValid: false, message: 'This is more than the available credit' }
@@ -92,21 +74,29 @@ class Redemption extends Component {
             onChange={this.handleCustomInput('deductAmount')}
             value={this.state.deductAmount}>
           </CustomInput>
-          <TextField className='user-email'
-            type='text'
+          <CustomInput
+            className='user-email'
             label='Paypal email'
-            onChange={this.handleInput('userEmail')}/>
+            isValidationActive={this.state.isRedeemFormActive}
+            validations={[]}
+            onChange={this.handleCustomInput('userEmail')}
+            value={this.state.userEmail}>
+          </CustomInput>
           <Button onClick={this.redeemVoucher} className='submit-deduction' variant="contained" color="secondary">Redeem voucher</Button>
         </div>
     }
       return (
         <div className='redemption-page'>
           <div className='get-voucher-form'>
-              <TextField className='voucher-code'
-                type='text'
-                label='Voucher to redeem'
-                onChange={this.handleInput('voucherCode')}/>
-              <Button onClick={this.getVoucherDetails} className='get-voucher-details' variant="contained" color="secondary">Get voucher</Button>
+            <CustomInput
+              className='voucher-code'
+              label='Voucher to redeem'
+              isValidationActive={this.state.isRedeemFormActive}
+              validations={[]}
+              onChange={this.handleCustomInput('voucherCode')}
+              value={this.state.voucherCode}>
+            </CustomInput>
+            <Button onClick={this.getVoucherDetails} className='get-voucher-details' variant="contained" color="secondary">Get voucher</Button>
           </div>
           {redeemVoucherForm}
         </div>
