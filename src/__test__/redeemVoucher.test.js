@@ -57,7 +57,7 @@ describe('Redeem voucher', () => {
 
   it('instructs api to redeem voucher for specified amount, and passes access token in header', async () => {
     wrapper.find('.deduct-amount input').simulate('change', {
-      target: { value: 5 }
+      target: { value: 1 }
     });
     wrapper.find('.user-email input').simulate('change', {
       target: { value: 'me@gmail.com' }
@@ -67,10 +67,36 @@ describe('Redeem voucher', () => {
     expect(stubbedPostCall.mock.calls[0][1]).toEqual({
       email: 'me@gmail.com',
       code: 2,
-      amount: 5
+      amount: 1
     })
     expect(stubbedPostCall.mock.calls[0][2].headers.Authorization).toEqual(
       `Bearer ${mockAccessToken}`
     )
+  })
+
+  it('does not call api if deduct amount larger than voucher amount', async () => {
+    wrapper.find('.deduct-amount input').simulate('change', {
+      target: { value: 1.01 }
+    });
+    wrapper.find('.user-email input').simulate('change', {
+      target: { value: 'me@gmail.com' }
+    });
+    wrapper.find('.submit-deduction button').simulate('click')
+
+    expect(stubbedPostCall.mock.calls.length).toEqual(0);
+  })
+
+  it('displays error if deduct amount larger than voucher amount', async () => {
+    wrapper.find('.deduct-amount input').simulate('change', {
+      target: { value: 1.01 }
+    });
+    wrapper.find('.user-email input').simulate('change', {
+      target: { value: 'me@gmail.com' }
+    });
+    wrapper.find('.submit-deduction button').simulate('click')
+
+    const deductAmountError = wrapper.find('.deduct-amount-error').text()
+
+    expect(deductAmountError).toEqual('This is more than the available credit');
   })
 });

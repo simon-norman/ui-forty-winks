@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import './Redemption.css';
 
 class Redemption extends Component {
   constructor(props) {
 		super(props);
-    this.state = {voucherCode: null}
+    this.state = { voucherCode: null }
   }
 
-  redeemVoucher = async (event) => {
-    event.preventDefault();
-    const voucherCodeString = this.state.voucherCode ? parseInt(this.state.voucherCode.substr(2),10) : null
-    const voucherDetails = {
-      "email": this.state.userEmail,
-      "code": voucherCodeString,
-      "amount": this.state.deductAmount
+  handleInput = (name) => {
+    return (event) => {
+      this.setState({[name]: event.target.value})
     }
-    const response = await this.props.voucherApi.redeemVoucher(voucherDetails)
-    this.setState({voucher: response, deductAmount: ''})
   }
 
   getVoucherDetails = async (event) => {
@@ -28,9 +23,30 @@ class Redemption extends Component {
     this.setState({ voucher: response })
   }
 
-  handleInput = (name) => {
-    return (event) => {
-      this.setState({[name]: event.target.value})
+  redeemVoucher = async (event) => {
+    this.setState({ isRedeemFormActive: true })
+    if(this.isRedeemValid()) {
+      event.preventDefault();
+      const voucherCodeString = this.state.voucherCode ? parseInt(this.state.voucherCode.substr(2),10) : null
+      const voucherDetails = {
+        "email": this.state.userEmail,
+        "code": voucherCodeString,
+        "amount": this.state.deductAmount
+      }
+      const response = await this.props.voucherApi.redeemVoucher(voucherDetails)
+      this.setState({ voucher: response, deductAmount: '', isRedeemFormActive: false })
+    } else {
+
+    }
+  }
+
+  isRedeemValid = () => {
+    return parseFloat(this.state.deductAmount) <= parseFloat(this.state.voucher.amount)
+  }
+
+  deductAmountError = () => {
+    if(!this.isRedeemValid() && this.state.isRedeemFormActive) {
+      return 'This is more than the available credit';
     }
   }
 
@@ -47,6 +63,7 @@ class Redemption extends Component {
             label='Amount to deduct'
             onChange={this.handleInput('deductAmount')}
             value={this.state.deductAmount}/>
+          <div className='deduct-amount-error'>{this.deductAmountError()}</div>
           <TextField className='user-email'
             type='text'
             label='Paypal email'
