@@ -35,34 +35,37 @@ class Redemption extends Component {
   }
 
   render() {
-    if (!this.state.voucher) {
+    let redeemVoucherForm = ''
+    
+    if (this.state.voucher) {
+      redeemVoucherForm =  
+        <div className='redeem-voucher-form'>
+          <div className='confirmed-voucher-code'>Redeem credit from: FW{this.state.voucher.code}</div>
+          <div className='amount-left'>Credit available: £{this.state.voucher.amount}</div>
+          <TextField className='deduct-amount'
+            type='text'
+            label='Amount to deduct'
+            onChange={this.handleInput('deductAmount')}
+            value={this.state.deductAmount}/>
+          <TextField className='user-email'
+            type='text'
+            label='Paypal email'
+            onChange={this.handleInput('userEmail')}/>
+          <Button onClick={this.redeemVoucher} className='submit-deduction' variant="contained" color="secondary">Redeem voucher</Button>
+        </div>
+    }
       return (
-        <div className='redeem-form-1'>
-            <TextField className='voucher-code'
-              type='text'
-              label='Voucher to redeem'
-              onChange={this.handleInput('voucherCode')}/>
-            <Button onClick={this.getVoucherDetails} className='get-voucher-details' variant="contained" color="secondary">Submit</Button>
+        <div className='redemption-page'>
+          <div className='get-voucher-form'>
+              <TextField className='voucher-code'
+                type='text'
+                label='Voucher to redeem'
+                onChange={this.handleInput('voucherCode')}/>
+              <Button onClick={this.getVoucherDetails} className='get-voucher-details' variant="contained" color="secondary">Get voucher</Button>
+          </div>
+          {redeemVoucherForm}
         </div>
       )
-    } else {
-      return (
-          <div className='redeem-form-2'>
-            <h2 className='confirmed-voucher-code'>Redeem credit from: FW{this.state.voucher.code}</h2>
-            <div className='amount-left'>Credit available: £{this.state.voucher.amount}</div>
-              <TextField className='deduct-amount'
-                type='text'
-                label='Amount to deduct'
-                onChange={this.handleInput('deductAmount')}
-                value={this.state.deductAmount}/>
-              <TextField className='user-email'
-                type='text'
-                label='email confirmation to'
-                onChange={this.handleInput('userEmail')}/>
-              <Button onClick={this.redeemVoucher} className='submit-deduction' variant="contained" color="secondary">Submit</Button>
-          </div>
-      )
-    }
   }
 }
 

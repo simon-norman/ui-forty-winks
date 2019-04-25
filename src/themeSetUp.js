@@ -18,7 +18,17 @@ const theme = createMuiTheme({
         textTransform: 'none',
         fontWeight: 'normal'
       },
+      contained: { 
+        fontSize: '1.7rem',
+        textTransform: 'none',
+        fontWeight: 600
+      },
     },
+    MuiInput: {
+      input: {
+        fontSize: '1.7rem',
+      },
+    }
   }
 });
 
