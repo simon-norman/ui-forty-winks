@@ -1,5 +1,4 @@
 import React from 'react'
-import { render, fireEvent } from 'react-testing-library'
 import { mount } from 'enzyme';
 import Redemption from '../redemption/Redemption'
 import createAuth from '../services/auth'
@@ -7,7 +6,6 @@ import createVoucherApi from '../services/voucherApi';
 
 describe('<LoginSuccess /> spec', () => {
   let mockAccessToken;
-  let mockBaseApi;
   let stubbedGetCall;
   let stubbedPostCall;
   let wrapper;
@@ -21,16 +19,18 @@ describe('<LoginSuccess /> spec', () => {
     mockAccessToken = 'abc321'
     auth.accessToken = mockAccessToken
 
-    const mockGetVoucherResponse = 
+    const mockVoucherResponse = 
     { data: {
       amount: 1,
       code: 'B13'
     }}
     stubbedGetCall = jest.fn(() => {
-      return Promise.resolve(mockGetVoucherResponse)
+      return Promise.resolve(mockVoucherResponse)
     })
-    stubbedPostCall = jest.fn()
-    mockBaseApi = {
+    stubbedPostCall = jest.fn(() => {
+      return Promise.resolve(mockVoucherResponse)
+    })
+    const mockBaseApi = {
       get: stubbedGetCall,
       post: stubbedPostCall
     }
@@ -55,7 +55,7 @@ describe('<LoginSuccess /> spec', () => {
     expect(displayedVoucherAmount).toEqual("Credit available: £1")
   })
 
-  it('instructs api to redeem voucher for specified amount', async () => {
+  it('instructs api to redeem voucher for specified amount, and passes access token in header', async () => {
     wrapper.find('.deduct-amount input').simulate('change', {
       target: { value: 5 }
     });
@@ -63,10 +63,14 @@ describe('<LoginSuccess /> spec', () => {
       target: { value: 'me@gmail.com' }
     });
     wrapper.find('.submit-deduction button').simulate('click')
+
     expect(stubbedPostCall.mock.calls[0][1]).toEqual({
       email: 'me@gmail.com',
       code: 2,
       amount: 5
     })
+    expect(stubbedPostCall.mock.calls[0][2].headers.Authorization).toEqual(
+      `Bearer ${mockAccessToken}`
+    )
   })
 });
