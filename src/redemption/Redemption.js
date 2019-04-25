@@ -57,9 +57,8 @@ class Redemption extends Component {
                 value={this.state.deductAmount}/>
               <TextField className='user-email'
                 type='text'
-                name='userEmail'
                 label='email confirmation to'
-                onChange={this.handleInput}/>
+                onChange={this.handleInput('userEmail')}/>
               <Button onClick={this.redeemVoucher} className='submit-deduction' variant="contained" color="secondary">Submit</Button>
           </div>
       )
