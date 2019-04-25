@@ -22,7 +22,7 @@ class NavBar extends Component {
             Vouchers
           </Button>
           <Button onClick={this.props.auth.login} color="inherit" className="nav-bar__item load-login-page-button">
-            Shelters login
+            Redeem voucher
           </Button>
         </Toolbar>
       </AppBar>
