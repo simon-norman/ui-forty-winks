@@ -1,0 +1,9 @@
+.sms-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+div.sms-number, div.send-sms {
+  margin-bottom: 20px;
+}
