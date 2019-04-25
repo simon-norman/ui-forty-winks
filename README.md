@@ -1,12 +1,15 @@
 # UI Forty Winks
 
-This is the frontend for the forty winks app. Forty Winks enables users to book shelter accommodation for homeless people.
+This is the frontend for the forty winks app. Forty Winks enables users to purchase vouchers that can be redeemed at participating shelter accommodation for homeless people.
 
 The production version is here: https://ui-forty-winks.herokuapp.com/.
 
 The backend api repository can be found here: https://github.com/simon-norman/api-forty-winks
 
 ## How to run
+
+Clone this repo and perform `npm install` command
+Ensure that you have followed the commands for How To Run from the backend api repository
 
 ### In development mode: `npm run start-dev`
 
