@@ -38,6 +38,7 @@ class MessageForm extends Component {
         return (
         <div className='sms-form'>
         <TextField className='sms-number'
+          id='sms-number'
           type='text'
           label='Text voucher code to: +44'
           name='number'
@@ -46,7 +47,7 @@ class MessageForm extends Component {
         </div>
       )
     } else {
-      return (<h4 className='text-sent-confirmation'>The voucher has been sent to +44{this.state.number}</h4>)
+      return (<h4 className='text-sent-confirmation'>The voucher has been sent to +44{this.state.number}.</h4>)
     }
   }
 }

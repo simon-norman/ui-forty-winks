@@ -1,25 +1,26 @@
-/* // <reference types="cypress" />
-import 'cypress-react-unit-test'
-import React from 'react'
-import auth from '../../src/services/auth'
-import App from '../../src/App.js'
-describe('redeem voucher', () => {
-  // beforeEach(() => {
-  //   cy.route('GET', 'voucher', {code: "FW123456", amount: 20}) 
-  //   cy.route('POST', 'voucher/redeem', {code: "FW123456", amount: 13})
-  //   const handleAuthenticationStub = cy.stub(auth, 'handleAuthentication')
-  //   handleAuthenticationStub.returns(new Promise((resolve, reject) => {
-  //     resolve()
-  //   }) )
-  //   const getAccessTokenStub = cy.stub(auth, 'getAccessToken')
-  //   getAccessTokenStub.returns('abc')
-  // })
-  // it('renders first redemption form', () => {
-  //   cy.mount(<App />)
-  //   cy.get('.redeem-form-1')
-  //   cy.get('.voucher-code')
-  //   cy.get('.get-voucher-details')
-//  }) */
+// // <reference types="cypress" />
+// // import 'cypress-react-unit-test'
+// import React from 'react'
+// import auth from '../../src/services/auth'
+// import App from '../../src/App.js'
+// describe('redeem voucher', () => {
+//   beforeEach(() => {
+//     cy.route('GET', 'voucher', {code: "FW123456", amount: 20})
+//     cy.route('POST', 'voucher/redeem', {code: "FW123456", amount: 13})
+//     const handleAuthenticationStub = cy.stub(auth, 'handleAuthentication')
+//     handleAuthenticationStub.returns(new Promise((resolve, reject) => {
+//       resolve()
+//     }) )
+//     const getAccessTokenStub = cy.stub(auth, 'getAccessToken')
+//     getAccessTokenStub.returns('abc')
+//   })
+//
+//   it('renders first redemption form', () => {
+//     // cy.mount(<App />)
+//     cy.get('.redeem-form-1')
+//     cy.get('.voucher-code')
+//     cy.get('.get-voucher-details')
+//  })
 //
 //   it('renders second redemption form', () => {
 //     cy.visit('/redemption')
@@ -51,4 +52,4 @@ describe('redeem voucher', () => {
 //     cy.get('.amount-left').contains('8')
 //   })
 //
-//})
+// })
