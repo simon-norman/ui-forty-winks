@@ -17,5 +17,9 @@
 import './commands'
 import 'cypress-react-unit-test'
 
+beforeEach(() => {
+  cy.server()
+})
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
