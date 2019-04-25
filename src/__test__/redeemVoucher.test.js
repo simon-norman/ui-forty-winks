@@ -4,7 +4,7 @@ import Redemption from '../redemption/Redemption'
 import createAuth from '../services/auth'
 import createVoucherApi from '../services/voucherApi';
 
-describe('<LoginSuccess /> spec', () => {
+describe('Redeem voucher', () => {
   let mockAccessToken;
   let stubbedGetCall;
   let stubbedPostCall;
