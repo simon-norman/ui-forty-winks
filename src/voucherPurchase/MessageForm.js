@@ -16,7 +16,6 @@ class MessageForm extends Component {
     const name = event.target.name
     const value = event.target.value
     this.setState({[name]: value})
-    console.log(this.state)
   }
 
   sendSMS = (event) => {
@@ -26,9 +25,7 @@ class MessageForm extends Component {
       "code": this.state.code,
       "amount": this.state.amount
     }
-    console.log(message)
     messageApi.postMessage(message, this.updateMessageState)
-    console.log(this.state.number)
     this.updateMessageState()
   }
 
@@ -49,7 +46,7 @@ class MessageForm extends Component {
         </div>
       )
     } else {
-      return (<h5 className='text-sent-confirmation'>The voucher has been sent to +44{this.state.number}</h5>)
+      return (<h4 className='text-sent-confirmation'>The voucher has been sent to +44{this.state.number}</h4>)
     }
   }
 }

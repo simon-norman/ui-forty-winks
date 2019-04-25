@@ -5,5 +5,13 @@
 }
 
 div.sms-number, div.send-sms {
-  margin-bottom: 20px;
+  margin: 20px;
+}
+
+.sms-form label {
+  font-size: 1.5rem;
+}
+
+h4 {
+  margin: 20px;
 }
