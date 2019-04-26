@@ -1,38 +1,33 @@
-import auth0 from 'auth0-js';
 
-const auth0Instance = new auth0.WebAuth({
-  domain: 'dev-itjmkjwl.eu.auth0.com',
-  clientID: 'cQDWo28WaQ6jGjji65l9pLRy8k6q9vSb',
-  redirectUri: 'http://localhost:3000/redemption',
-  audience:'https://api-forty-winks.herokuapp.com/',
-  responseType: 'token',
-});
+const createAuth = (auth0Instance) => {
+  const auth = {
+    login() {
+      auth0Instance.authorize();
+    },
 
-const auth = {
-  accessToken: '',
+    handleAuthentication() {
+      return new Promise((resolve, reject) => {
+        auth0Instance.parseHash((err, authResult) => {
+          if (err || !authResult || !authResult.accessToken) {
+            return reject(err)
+          }
 
-  login() {
-    auth0Instance.authorize();
-  },
+          localStorage.setItem('isLoggedIn', 'true');
+          let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
+          this.accessToken = authResult.accessToken;
+          this.expiresAt = expiresAt;
+          resolve()
+        })
+      })
+    },
 
-  handleAuthentication() {
-    auth0Instance.parseHash(this.setSession.bind(this))
-  },
+    getAccessToken() {
+      return this.accessToken;
+    },
+  }
 
-  setSession(err, authResult) {
-    if (authResult && authResult.accessToken) {
-      localStorage.setItem('isLoggedIn', 'true');
-
-      let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
-      this.accessToken = authResult.accessToken;
-      this.expiresAt = expiresAt;
-    }
-  },
-
-  getAccessToken() {
-    return this.accessToken;
-  },
+  return auth
 }
 
 
-export default auth;
+export default createAuth;

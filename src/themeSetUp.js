@@ -12,13 +12,23 @@ const theme = createMuiTheme({
     }
   },
   overrides: {
-    MuiButton: { 
-      text: { 
-        fontSize: '15px',
+    MuiButton: {
+      text: {
+        fontSize: '1.7rem',
         textTransform: 'none',
         fontWeight: 'normal'
       },
+      contained: { 
+        fontSize: '1.7rem',
+        textTransform: 'none',
+        fontWeight: 600
+      },
     },
+    MuiInput: {
+      input: {
+        fontSize: '1.7rem',
+      },
+    }
   }
 });
 

@@ -1,25 +1,49 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import voucherApi from '../services/voucherApi';
-import auth from '../services/auth';
+import './Redemption.css';
+import { isFieldPopulated } from '../inputs/inputValidation'
+import CustomForm from '../inputs/CustomForm'
+import RedeemVoucherForm from './RedeemVoucherForm'
 
 class Redemption extends Component {
   constructor(props) {
-		super(props)
-    if (/access_token|id_token|error/.test(props.location.hash)) {
-      auth.handleAuthentication();
-    }
+    super(props);
+    this.state = { voucher: {} }
   }
 
-  redeemVoucher = () => {
-    voucherApi.redeemVoucher(1)
+  getVoucherDetails = async (voucher) => {
+    const voucherCodeString = voucher.voucherCode ? parseInt(voucher.voucherCode.substr(2),10) : null
+    const response = await this.props.voucherApi.getVoucher(voucherCodeString);
+    this.setState({ voucher: response })
+  }
+
+  setVoucher = (voucher) => {
+    this.setState({ voucher })
   }
 
   render() {
     return (
-      <div className='main-page-container'>
-        <Button onClick={this.redeemVoucher} className="buy-voucher button" variant="contained" color="secondary">
-        </Button>
+      <div className='redemption-page'>
+        <CustomForm 
+          className='get-voucher-form' 
+          submit={{
+            fn: this.getVoucherDetails,
+            className: 'get-voucher-details',
+            value: 'Get voucher'
+          }}
+          fields={[
+            {
+              className: 'voucher-code',
+              name: 'voucherCode',
+              label: 'Voucher to redeem',
+              validations: [isFieldPopulated],
+            },
+          ]}>
+        </CustomForm>
+        <RedeemVoucherForm 
+          voucherApi={this.props.voucherApi} 
+          voucher={this.state.voucher} 
+          setVoucher={this.setVoucher} 
+        />
       </div>
     )
   }

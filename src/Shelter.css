@@ -13,10 +13,6 @@
   color: grey;
 }
 
-.shelterInfo {
-  display: inline-block;
-}
-
-.shelterMap {
+.shelterInfo, .shelterMap {
   display: inline-block;
 }
