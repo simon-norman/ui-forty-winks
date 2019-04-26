@@ -34,7 +34,7 @@ class CustomInput extends Component {
 
   render() {
       return (
-        <div className={`${this.props.className}-custom-input`}>
+        <div className={`${this.props.className}-custom-input custom-input`}>
           <TextField 
             className={this.props.className}
             type='text'
