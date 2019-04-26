@@ -26,7 +26,7 @@ Cypress.Commands.add('login', (overrides = {}) => {
 
   const options = {
     method: 'POST',
-    url: auth_url,
+    url: Cypress.env('auth_url'),
     body: {
       grant_type: 'password',
       username: Cypress.env('auth_username'),
