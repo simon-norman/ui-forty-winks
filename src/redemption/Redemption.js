@@ -36,18 +36,20 @@ class Redemption extends Component {
 
   render() {
     let redeemVoucherForm = ''
-    
+
     if (this.state.voucher) {
-      redeemVoucherForm =  
+      redeemVoucherForm =
         <div className='redeem-voucher-form'>
           <div className='confirmed-voucher-code'>Redeem credit from: FW{this.state.voucher.code}</div>
-          <div className='amount-left'>Credit available: £{this.state.voucher.amount}</div>
+          <div className='amount-left' id='amount-left'>Credit available: £{this.state.voucher.amount}</div>
           <TextField className='deduct-amount'
+            id='deduct-amount'
             type='text'
             label='Amount to deduct'
             onChange={this.handleInput('deductAmount')}
             value={this.state.deductAmount}/>
           <TextField className='user-email'
+            id='user-email'
             type='text'
             label='Paypal email'
             onChange={this.handleInput('userEmail')}/>
@@ -58,6 +60,7 @@ class Redemption extends Component {
         <div className='redemption-page'>
           <div className='get-voucher-form'>
               <TextField className='voucher-code'
+                id='voucher-code'
                 type='text'
                 label='Voucher to redeem'
                 onChange={this.handleInput('voucherCode')}/>
