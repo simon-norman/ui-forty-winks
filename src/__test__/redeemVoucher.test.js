@@ -95,7 +95,7 @@ describe('Redeem voucher', () => {
     });
     wrapper.find('.submit-deduction button').simulate('click')
 
-    const deductAmountError = wrapper.find('.deduct-amount-error').text()
+    const deductAmountError = wrapper.find('.deduct-amount-custom-input .validation-error').text()
 
     expect(deductAmountError).toEqual('This is more than the available credit');
   })
