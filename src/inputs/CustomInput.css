@@ -1,0 +1,19 @@
+
+label {
+  font-size: 1.7rem;
+}
+
+
+.custom-input div {
+  margin-top: 18px;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+div.validation-error {
+  margin-top: 6px;
+  margin-bottom: 10px;
+  text-align: left;
+  color: red;
+  font-size: 1.4rem;
+}

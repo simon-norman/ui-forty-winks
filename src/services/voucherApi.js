@@ -32,8 +32,8 @@ const createVoucherApi= (auth, baseApi) => {
         const response = await baseApi.post(`private/voucher/redeem`, voucherDetails, { headers: headers });
         return response.data;
       } catch (error) {
-        console.log(error);
-    }
+        console.log(error.response);
+      }
     }
   }
 }
