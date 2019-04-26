@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CustomInput from '../inputs/CustomInput';
+import CustomInput from './CustomInput';
 import Button from '@material-ui/core/Button';
 
 class CustomForm extends Component {
@@ -43,7 +43,6 @@ class CustomForm extends Component {
             isValidationActive={this.state.isFormActive}
             validations={field.validations}
             onChange={this.handleCustomInput(field.name)}
-            value={this.state.formData[field.name]}
           />
         })}
         <Button onClick={this.submitForm} className={this.props.submit.className} variant="contained" color="secondary">{this.props.submit.value}</Button>

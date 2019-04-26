@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './Redemption.css';
-import CustomForm from './CustomForm'
+import CustomForm from '../inputs/CustomForm'
 import { isEmailValid, isFieldPopulated } from '../inputs/inputValidation'
 
 class RedeemVoucherForm extends Component {
@@ -12,7 +11,6 @@ class RedeemVoucherForm extends Component {
       "amount": redemption.deductAmount
     }
     const response = await this.props.voucherApi.redeemVoucher(voucherDetails)
-    debugger
     this.props.setVoucher(response)
   }
 
@@ -39,13 +37,13 @@ class RedeemVoucherForm extends Component {
                   className: 'deduct-amount',
                   label: 'Amount to deduct',
                   name: 'deductAmount',
-                  validations: [this.isAvailableCreditForRedeem],
+                  validations: [isFieldPopulated, this.isAvailableCreditForRedeem],
                 },
                 {
                   className: 'user-email',
                   name: 'userEmail',
                   label: 'Paypal email',
-                  validations: [isEmailValid, isFieldPopulated],
+                  validations: [isFieldPopulated, isEmailValid],
                 }
               ]}/>
         </div>
