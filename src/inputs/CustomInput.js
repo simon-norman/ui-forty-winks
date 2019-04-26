@@ -26,7 +26,7 @@ class CustomInput extends Component {
   } 
 
   validationError = () => {
-    const { isValid, message } = this.fieldValidStatus()
+    const { isValid, message } = this.fieldValidStatus(this.state.value)
     if(!isValid && this.props.isValidationActive) {
       return message;
     }
