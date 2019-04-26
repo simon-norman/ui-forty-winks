@@ -4,23 +4,17 @@ import './Redemption.css';
 import CustomForm from './CustomForm'
 
 class GetVoucherForm extends Component {
-  constructor(props) {
-		super(props);
-    this.state = { isFormActive: false }
-  }
-
-  getVoucherDetails = async (event) => {
-    event.preventDefault();
-    const voucherCodeString = this.state.voucherCode ? parseInt(this.state.voucherCode.substr(2),10) : null
+  getVoucherDetails = async (voucher) => {
+    const voucherCodeString = voucher.voucherCode.value ? parseInt(voucher.voucherCode.value.substr(2),10) : null
     const response = await this.props.voucherApi.getVoucher(voucherCodeString);
-    this.setState({ voucher: response })
+    this.props.setVoucher(response)
   }
 
   render() {
       return (
         <div className='get-voucher-form'>
           <CustomForm 
-            className='redeem-voucher-form' 
+            className='get-voucher-form' 
             submit={{
               fn: this.getVoucherDetails,
               className: 'get-voucher-details',
@@ -29,8 +23,8 @@ class GetVoucherForm extends Component {
             fields={[
               {
                 className: 'voucher-code',
+                name: 'voucherCode',
                 label: 'Voucher to redeem',
-                isValidationActive: this.state.isFormActive,
                 validations: [isFieldPopulated],
               },
             ]}>

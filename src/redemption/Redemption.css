@@ -1,11 +1,11 @@
 .redeem-voucher-form {
-  margin-top: 70px;
+  margin-top: 90px;
 }
 
 .redemption-page {
   margin-left: 30%;
   margin-right: 30%;
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 .get-voucher-form, .redeem-voucher-form, .amount-left {
@@ -30,4 +30,9 @@
 
 div.voucher-code, div.user-email {
   margin-bottom: 20px;
+}
+
+.redemption-page button {
+  width: 100%;
+  margin-top: 15px;
 }

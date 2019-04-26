@@ -4,28 +4,20 @@ import CustomForm from './CustomForm'
 import { isEmailValid, isFieldPopulated } from '../inputs/inputValidation'
 
 class RedeemVoucherForm extends Component {
-  constructor(props) {
-		super(props);
-    this.state = { voucherCode: null, isFormActive: false }
-  }
-
-  redeemVoucher = async (event) => {
-    this.setState({ isRedeemFormActive: true })
-    event.preventDefault();
-    const voucherCodeString = this.state.voucherCode ? parseInt(this.state.voucherCode.substr(2),10) : null
+  redeemVoucher = async (redemption) => {
+    const voucherCodeString = this.props.voucherCode ? parseInt(this.props.voucherCode.substr(2),10) : null
     const voucherDetails = {
-      "email": this.state.userEmail,
+      "email": redemption.userEmail,
       "code": voucherCodeString,
-      "amount": this.state.redemptionForm.deductAmount
+      "amount": redemption.deductAmount
     }
     const response = await this.props.voucherApi.redeemVoucher(voucherDetails)
-    const redemptionForm = this.state.redemptionForm
-    redemptionForm.deductAmount = ''
-    this.setState({ voucher: response, redemptionForm, isRedeemFormActive: false })
+    debugger
+    this.props.setVoucher(response)
   }
 
   isAvailableCreditForRedeem = (deductAmount) => {
-    if(parseFloat(deductAmount) <= parseFloat(this.state.voucher.amount)) {
+    if(parseFloat(deductAmount) <= parseFloat(this.props.voucher.amount)) {
       return { isValid: true }
     }
     return { isValid: false, message: 'This is more than the available credit' }
@@ -33,12 +25,11 @@ class RedeemVoucherForm extends Component {
 
   render() {
       return (
-        <div>
-          <div className='confirmed-voucher-code'>Redeem credit from: FW{this.state.voucher.code}</div>
-          <div className='amount-left'>Credit available: £{this.state.voucher.amount}</div>
+        <div className='redeem-voucher-form' >
+            <div className='confirmed-voucher-code'>Redeem credit from: FW{this.props.voucher.code}</div>
+            <div className='amount-left'>Credit available: £{this.props.voucher.amount}</div>
             <CustomForm 
-              className='redeem-voucher-form' 
-              onSubmit={{
+              submit={{
                 fn: this.redeemVoucher,
                 className: 'submit-deduction',
                 value: 'Redeem voucher'
@@ -47,13 +38,13 @@ class RedeemVoucherForm extends Component {
                 {
                   className: 'deduct-amount',
                   label: 'Amount to deduct',
-                  isValidationActive: this.state.isRedeemFormActive,
+                  name: 'deductAmount',
                   validations: [this.isAvailableCreditForRedeem],
                 },
                 {
                   className: 'user-email',
+                  name: 'userEmail',
                   label: 'Paypal email',
-                  isValidationActive: this.state.isRedeemFormActive,
                   validations: [isEmailValid, isFieldPopulated],
                 }
               ]}/>
