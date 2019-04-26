@@ -39,6 +39,7 @@ class Confirmation extends Component {
         <div className='voucher-container'>
           {this.state.voucher ?
             <div><h1>Thank you!</h1>
+            <h3>Here's your voucher:</h3>
               <div>
                 <Voucher voucher = {this.state.voucher} />
               </div>

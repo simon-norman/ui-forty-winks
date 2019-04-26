@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import messageApi from '.././services/messageApi.js'
+import messageApi from '.././services/messageApi.js';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import './MessageForm.css';
+import { spacing } from '@material-ui/system';
 
 class MessageForm extends Component {
 
@@ -22,6 +26,7 @@ class MessageForm extends Component {
       "amount": this.state.amount
     }
     messageApi.postMessage(message, this.updateMessageState)
+    this.updateMessageState()
   }
 
   updateMessageState = (message) => {
@@ -31,20 +36,18 @@ class MessageForm extends Component {
   render() {
       if (this.state.message === false) {
         return (
-        <form onSubmit={this.sendSMS}>
-          <label>
-            Send voucher code to: +44
-            <input className='sms-number'
-              type='text'
-              name='number'
-              value={this.state.number}
-              onChange={this.handleNumberChange}/>
-          </label>
-          <input className='sms-submit' type='submit' value='submit'/>
-        </form>
+        <div className='sms-form'>
+        <TextField className='sms-number'
+          id='sms-number'
+          type='text'
+          label='Text voucher code to: +44'
+          name='number'
+          onChange={this.handleNumberChange}/>
+        <Button onClick={this.sendSMS} className='send-sms' variant="contained" color="secondary">Send</Button>
+        </div>
       )
     } else {
-      return (<div className='text-sent-confirmation'>Voucher sent to 0{this.state.number}!</div>)
+      return (<h4 className='text-sent-confirmation'>The voucher has been sent to +44{this.state.number}.</h4>)
     }
   }
 }

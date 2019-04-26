@@ -18,8 +18,8 @@ describe('voucher confirmation', () => {
 
   it('renders sms sent confirmation message', () => {
     cy.visit('/voucher/success')
-    cy.get('.sms-number').type("7777777777")
-    cy.get('.sms-submit').click({ force: true })
-    cy.get('.text-sent-confirmation').contains('Voucher sent to 07777777777!')
+    cy.get('#sms-number').type("7777777777")
+    cy.get('.send-sms').click({ force: true })
+    cy.get('.text-sent-confirmation').contains('The voucher has been sent to +447777777777.')
   })
 })
