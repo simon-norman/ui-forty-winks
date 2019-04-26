@@ -18,7 +18,6 @@ class CustomForm extends Component {
 
   handleCustomInput = (name) => {
     return ({ value, isValid }) => {
-      console.log(isValid)
       const formData = this.state.formData
       formData[name] = { value, isValid }
       this.setState({ formData })

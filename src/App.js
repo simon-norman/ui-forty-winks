@@ -39,7 +39,6 @@ class App extends Component {
 
   requireAuth = () => {
     const authToken = this.state.auth.getAccessToken()
-    console.log(authToken)
     if (!authToken) {
       this.state.auth.login()
     }
