@@ -23,8 +23,8 @@ class Redemption extends Component {
   render() {
     return (
       <div className='redemption-page'>
-        <CustomForm 
-          className='get-voucher-form' 
+        <CustomForm
+          className='get-voucher-form'
           submit={{
             fn: this.getVoucherDetails,
             className: 'get-voucher-details',
