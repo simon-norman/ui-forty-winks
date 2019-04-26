@@ -32,7 +32,24 @@ div.voucher-code, div.user-email {
   margin-bottom: 20px;
 }
 
-.redemption-page button {
-  width: 100%;
-  margin-top: 15px;
+@media only screen and (min-width: 600px) and (max-width: 1400px) {
+  .redemption-page {
+    padding-top: 0px;
+  }
+
+  .redeem-voucher-form {
+    margin-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .redemption-page {
+    margin-left: 4%;
+    margin-right: 4%;
+    padding-top: 5px;
+  }
+
+  .redeem-voucher-form {
+    margin-top: 50px;
+  }
 }

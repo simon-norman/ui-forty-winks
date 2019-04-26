@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CustomInput from './CustomInput';
 import Button from '@material-ui/core/Button';
+import './CustomForm.css'
 
 class CustomForm extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class CustomForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className='custom-form'>
         {this.props.fields.map((field) => {
           return <CustomInput             
             className={field.className}
