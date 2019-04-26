@@ -39,11 +39,11 @@ class Redemption extends Component {
             },
           ]}>
         </CustomForm>
-        <RedeemVoucherForm 
+        {this.state.voucher.code && <RedeemVoucherForm 
           voucherApi={this.props.voucherApi} 
           voucher={this.state.voucher} 
           setVoucher={this.setVoucher} 
-        />
+        />}
       </div>
     )
   }
