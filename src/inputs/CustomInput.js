@@ -6,17 +6,17 @@ class CustomInput extends Component {
   constructor(props) {
 		super(props);
     this.state = { value: '' }
-    this.props.onChange({ value: '', isValid: this.fieldValidStatus().isValid })
   }
 
   handleInput = (event) => {
-    this.setState({ value: event.target.value })
-    this.props.onChange({ value: event.target.value, isValid: this.fieldValidStatus().isValid })
+    const value = event.target.value
+    this.setState({ value })
+    this.props.onChange({ value, isValid: this.fieldValidStatus(value).isValid })
   }
 
-  fieldValidStatus = () => {
+  fieldValidStatus = (value) => {
     for(let validation of this.props.validations) {
-      const { isValid, message } = validation(this.state.value)
+      const { isValid, message } = validation(value)
       if(!isValid) {
         return { isValid, message }
       }
@@ -40,6 +40,7 @@ class CustomInput extends Component {
             type='text'
             label={this.props.label}
             onChange={this.handleInput}
+            value={this.props.value}
             />
           <div className='validation-error'>{this.validationError()}</div>
         </div>

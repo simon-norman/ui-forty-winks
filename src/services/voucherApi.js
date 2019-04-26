@@ -2,18 +2,17 @@
 const createVoucherApi= (auth, baseApi) => {
   return {
     getVoucher: async (code) => {
-      return { code: 123, amount: 5 }
-      // try {
-      //   const response = await baseApi.get('/voucher', {params: {
-      //     code: code
-      //   }
-      // });
+      try {
+        const response = await baseApi.get('/voucher', {params: {
+          code: code
+        }
+      });
 
-      //   return response.data;
+        return response.data;
 
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     postVoucher: async (amount) => {
@@ -33,8 +32,8 @@ const createVoucherApi= (auth, baseApi) => {
         const response = await baseApi.post(`private/voucher/redeem`, voucherDetails, { headers: headers });
         return response.data;
       } catch (error) {
-        console.log(error);
-    }
+        console.log(error.response);
+      }
     }
   }
 }

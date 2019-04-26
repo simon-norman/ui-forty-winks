@@ -4,12 +4,21 @@ import Button from '@material-ui/core/Button';
 
 class CustomForm extends Component {
   constructor(props) {
-		super(props);
-    this.state = { formData: {}, isFormActive: false }
+    super(props);
+    this.state = { formData: this.getBlankForm() }
+  }
+
+  getBlankForm = () => {
+    const formData = {}
+    for(let field of this.props.fields) {
+      formData[field.name] = { value: '', isValid: false }
+    }
+    return formData
   }
 
   handleCustomInput = (name) => {
     return ({ value, isValid }) => {
+      console.log(isValid)
       const formData = this.state.formData
       formData[name] = { value, isValid }
       this.setState({ formData })
@@ -25,12 +34,21 @@ class CustomForm extends Component {
     return true
   }
 
+  extractDataFromForm = () => {
+    const formData = {}
+    for(let field in this.state.formData) {
+      formData[field] = this.state.formData[field].value
+    }
+    return formData
+  }
+
   submitForm = async () => {
     this.setState({ isFormActive: true })
     if(this.isFormValid()) {
-      await this.props.submit.fn(this.state.formData)
-      this.setState({ formData: {}, isFormActive: false })
+      await this.props.submit.fn(this.extractDataFromForm())
+      this.setState({ isFormActive: false })
     }
+    this.setState({ formData: this.getBlankForm() })
   }
 
   render() {
@@ -43,6 +61,7 @@ class CustomForm extends Component {
             isValidationActive={this.state.isFormActive}
             validations={field.validations}
             onChange={this.handleCustomInput(field.name)}
+            value={this.state.formData[field.name].value}
           />
         })}
         <Button onClick={this.submitForm} className={this.props.submit.className} variant="contained" color="secondary">{this.props.submit.value}</Button>

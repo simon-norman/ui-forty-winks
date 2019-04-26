@@ -4,10 +4,9 @@ import { isEmailValid, isFieldPopulated } from '../inputs/inputValidation'
 
 class RedeemVoucherForm extends Component {
   redeemVoucher = async (redemption) => {
-    const voucherCodeString = this.props.voucherCode ? parseInt(this.props.voucherCode.substr(2),10) : null
     const voucherDetails = {
       "email": redemption.userEmail,
-      "code": voucherCodeString,
+      "code": this.props.voucher.code,
       "amount": redemption.deductAmount
     }
     const response = await this.props.voucherApi.redeemVoucher(voucherDetails)

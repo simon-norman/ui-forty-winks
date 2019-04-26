@@ -6,14 +6,18 @@ import RedeemVoucherForm from './RedeemVoucherForm'
 
 class Redemption extends Component {
   constructor(props) {
-		super(props);
+    super(props);
     this.state = { voucher: {} }
   }
 
   getVoucherDetails = async (voucher) => {
-    const voucherCodeString = voucher.voucherCode.value ? parseInt(voucher.voucherCode.value.substr(2),10) : null
+    const voucherCodeString = voucher.voucherCode ? parseInt(voucher.voucherCode.substr(2),10) : null
     const response = await this.props.voucherApi.getVoucher(voucherCodeString);
     this.setState({ voucher: response })
+  }
+
+  setVoucher = (voucher) => {
+    this.setState({ voucher })
   }
 
   render() {
@@ -35,7 +39,11 @@ class Redemption extends Component {
             },
           ]}>
         </CustomForm>
-        <RedeemVoucherForm voucherApi={this.props.voucherApi} voucher={this.state.voucher} setVoucher={this.setVoucher} />
+        <RedeemVoucherForm 
+          voucherApi={this.props.voucherApi} 
+          voucher={this.state.voucher} 
+          setVoucher={this.setVoucher} 
+        />
       </div>
     )
   }
